@@ -4,17 +4,27 @@
     "type": "split",
     "children": [
       {
-        "id": "8e1f15ec31757cee",
+        "id": "44a1513c8fa87cb2",
         "type": "tabs",
         "children": [
           {
-            "id": "91b8aeec96caad0b",
+            "id": "6f6b138143ea11bd",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "type": "kanban",
+              "state": {
+                "file": "Basic Chess.md",
+                "kanbanViewState": {
+                  "kanban-plugin": "board",
+                  "list-collapse": [
+                    false,
+                    false,
+                    false
+                  ]
+                }
+              },
+              "icon": "lucide-trello",
+              "title": "Basic Chess"
             }
           }
         ]
@@ -90,6 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Basic Chess.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +110,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Basic Chess"
             }
           },
           {
@@ -108,11 +119,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Basic Chess.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from Basic Chess"
             }
           },
           {
@@ -136,12 +148,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "Basic Chess.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of Basic Chess"
             }
           }
         ]
@@ -158,11 +171,14 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "obsidian-kanban:Create new board": false
     }
   },
-  "active": "91b8aeec96caad0b",
+  "active": "6f6b138143ea11bd",
   "lastOpenFiles": [
+    "Get Basic OpenGL Project Working📅 2025-07-31.md",
+    "Basic Chess.md",
     "Ideas.md",
     "dev_logs/2025-07-30.md",
     "dev_logs",
