@@ -29,3 +29,8 @@ Ideas:
 - heroscape style pick pieces you're going to loop through
 - normal crazy normal debuff normal crazy.....looping
 - chess goes through weirdmagedon acid trip
+- mini coops have a lot of circles (ie loops)
+- all of their pieces randomly move
+- random number of their pieces move randomly or toward king
+- looping through the same game but stranger and stranger things happen
+- loading screens are kinda a loop / often have loops in them (idk what to do with that info)
