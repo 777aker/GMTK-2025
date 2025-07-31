@@ -1,0 +1,28 @@
+- knitting and crocheting: have loops, thread crosses over itself, white black
+- loops up and down the chess board
+- ground hog day chess: same game over and over, less and less moves
+- chess dating game where all the pieces are gay and you call it fruit loops and it's secretly through the looking glass fan fiction
+- rollcoasters have loops: rollar coaster tycoon but all the people are chess pieces, make it so pieces can get in
+- blender bowling alley: strike nonsense animations
+- connected chess boards that teleport back and forth (portal?)
+- chess puzzles super hot style
+- pawn that moves in loop and destroys everything
+- looping chess instructions: programming chess, for loop pieces, baba is you, all move at same time
+- looss
+- always playing against self
+- right moves = unlimited moves: links melody unlocks stuff
+- get to task faster than opponent, make sacrifices
+- song on loop when it ends you stop, each song = one chess piece
+- chess squares play a note
+- chess but secrets, get a secret next to another piece, hidden board game info, fog of war chess
+- loop through pieces, can't pick which one
+- doughnut chess board
+- drawback chess
+- heroscape style pick pieces you're going to loop through
+- normal crazy normal debuff normal crazy.....looping
+- chess goes through weirdmagedon acid trip
+- mini coops have a lot of circles (ie loops)
+- all of their pieces randomly move
+- random number of their pieces move randomly or toward king
+- looping through the same game but stranger and stranger things happen
+- loading screens are kinda a loop / often have loops in them (idk what to do with that info)
