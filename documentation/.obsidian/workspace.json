@@ -13,7 +13,7 @@
             "state": {
               "type": "kanban",
               "state": {
-                "file": "Basic Chess.md",
+                "file": "milestones/Basic Chess.md",
                 "kanbanViewState": {
                   "kanban-plugin": "board",
                   "list-collapse": [
@@ -100,7 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Basic Chess.md",
+                "file": "milestones/Basic Chess.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +119,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Basic Chess.md",
+                "file": "milestones/Basic Chess.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -148,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Basic Chess.md",
+                "file": "milestones/Basic Chess.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -175,10 +175,11 @@
       "obsidian-kanban:Create new board": false
     }
   },
-  "active": "6f6b138143ea11bd",
+  "active": "28dae6622e1e6004",
   "lastOpenFiles": [
+    "milestones",
     "Get Basic OpenGL Project Working📅 2025-07-31.md",
-    "Basic Chess.md",
+    "milestones/Basic Chess.md",
     "Ideas.md",
     "dev_logs/2025-07-30.md",
     "dev_logs",
