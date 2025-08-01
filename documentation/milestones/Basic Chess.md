@@ -1,14 +1,11 @@
 ---
+
 kanban-plugin: board
+
 ---
 
 ## TODO
 
-- [ ] Chess Board
-	- [ ] display board
-	- [ ] piece class with what piece is in each square
-	- [ ] call function of class based on where mouse is (ie mx / 10 % 50 = i in 2d array)
-	- [ ] call select function, then clicked
 - [ ] Chess Pieces
 	- [ ] piece super class
 	- [ ] where it can move function
@@ -35,13 +32,18 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] Get Basic OpenGL Project Working
-	- [ ] window
-	- [ ] fps
+- [ ] Chess Board
+	- [ ] display board
+	- [ ] piece class with what piece is in each square
+	- [ ] call function of class based on where mouse is (ie mx / 10 % 50 = i in 2d array)
+	- [ ] call select function, then clicked
 
 
 ## Done
 
+- [ ] Get Basic OpenGL Project Working
+	- [x] window ✅ 2025-07-31
+	- [x] fps ✅ 2025-07-31
 
 
 
