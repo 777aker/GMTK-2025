@@ -59,7 +59,7 @@ void mouse(GLFWwindow *window, int button, int action, int mods)
 void display_loop(Window *windowobj)
 {
 	// double last_time = glfwGetTime();
-	gameboard = new Board(green_sea);
+	gameboard = new Board(green_sea, 1320, 10);
 
 	while (!glfwWindowShouldClose(windowobj->glwindow))
 	{
@@ -67,7 +67,8 @@ void display_loop(Window *windowobj)
 		// double now = glfwGetTime();
 		// double deltaTime = now - last_time;
 
-		gameboard->draw();
+		if (gameboard != nullptr)
+			gameboard->draw();
 
 		// want to see fps
 		glColor3ub(nephritis.r, nephritis.g, nephritis.b);

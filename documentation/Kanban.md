@@ -6,10 +6,6 @@ kanban-plugin: board
 
 ## TODO
 
-- [ ] Chess AI
-	- [ ] some library where you feed board it gives you best move. convert that to our format
-	- [ ] after player moves ai make move
-	- [ ] player can't make move until ai does
 - [ ] 2 Player
 	- [ ] after one player makes a move other player can make a move
 	- [ ] multiplayer or whatever
@@ -27,6 +23,10 @@ kanban-plugin: board
 
 ## In Progress
 
+- [ ] Chess AI
+	- [ ] some library where you feed board it gives you best move. convert that to our format
+	- [ ] after player moves ai make move
+	- [ ] player can't make move until ai does
 
 
 ## Done

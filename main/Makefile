@@ -17,10 +17,11 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
-all: main.o board.o
+all: main.o board.o stockfish.o
 
 main.o: main.cpp
 board.o: board.cpp
+stockfish.o: stockfish.cpp
 
 .cpp.o:
 	g++ -c $(CFLG) -I /usr/include/opencv4 $<

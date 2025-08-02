@@ -1,4 +1,6 @@
 #include "board.hpp"
+
+#include "stockfish.hpp"
 #include "../pieces/piece.hpp"
 #include "../pieces/bishop.hpp"
 #include "../pieces/rook.hpp"
@@ -7,7 +9,9 @@
 #include "../pieces/king.hpp"
 #include "../pieces/pawn.hpp"
 
-Board::Board(color player_color)
+using namespace boost::process;
+
+Board::Board(color player_color, int stockfish_elo, int stockfish_depth)
 {
     this->player_color = player_color;
     if (player_color.r == green_sea.r &&
@@ -48,6 +52,9 @@ Board::Board(color player_color)
     pieces[5][7] = new Bishop(5, 7, ai_color, this);
     pieces[6][7] = new Knight(6, 7, ai_color, this);
     pieces[7][7] = new Rook(7, 7, ai_color, this);
+
+    player_turn = true;
+    stockfish = new Stockfish(stockfish_elo, stockfish_depth);
 }
 
 Board::~Board()

@@ -3,3 +3,10 @@ This is the repo for a game for the 2025 GMTK game jam.
 The theme is "LOOP".
 
 I've been obsessed with Chess lately so gonna make some kind of chess game.
+
+I'm using stockfish 17.1 for generating AI moves. 
+As part of the GPL v3 licensing I'm including the links below for more stockfish info.
+https://stockfishchess.org/
+https://official-stockfish.github.io/docs/stockfish-wiki/Developers.html#terms-of-use
+https://github.com/official-stockfish/Stockfish/blob/master/Copying.txt
+https://github.com/official-stockfish/Stockfish/tree/master
