@@ -4,9 +4,8 @@
  */
 #include "window.hpp"
 
-double dim = 100;		 // size of the world
-double asp = 1;			 // aspect ratio
-bool wasResized = false; // called resize function
+double dim = 100; // size of the world
+double asp = 1;	  // aspect ratio
 
 // Fatal error occured
 static void Fatal(const char *format, ...)
@@ -35,12 +34,12 @@ void reshape(GLFWwindow *windowobj, int width, int height)
 	glOrtho(-asp * dim, asp * dim, -dim, +dim, -dim, +dim);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	wasResized = true;
 }
 
 // initialize a lot of window stuff
 Window::Window(const char *title, int sync, int width, int height,
-			   void (*key)(GLFWwindow *, int, int, int, int))
+			   void (*key)(GLFWwindow *, int, int, int, int),
+			   void (*mouse)(GLFWwindow *, int, int, int))
 {
 	// initialize GLFW
 	if (!glfwInit())
@@ -71,6 +70,8 @@ Window::Window(const char *title, int sync, int width, int height,
 
 	// set callback for keyboard input
 	glfwSetKeyCallback(glwindow, key);
+	// set callback for mouse input
+	glfwSetMouseButtonCallback(glwindow, mouse);
 }
 
 // clean up window

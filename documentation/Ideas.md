@@ -26,3 +26,10 @@
 - random number of their pieces move randomly or toward king
 - looping through the same game but stranger and stranger things happen
 - loading screens are kinda a loop / often have loops in them (idk what to do with that info)
+- Loop to the end, goes into another game
+- Money for abilties and pieces
+- Have to keep going further and further
+- When take king get money for their pieces?
+- When take pieces get money?
+- If you lose restart
+- To win beat the final stockfish

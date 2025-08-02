@@ -20,6 +20,9 @@
 #include <GL/gl.h>
 #endif
 
+extern double dim; // size of the world
+extern double asp; // aspect ratio
+
 // colors for drawing
 struct color
 {
@@ -43,10 +46,9 @@ void Print(const char *format, ...);
 class Window
 {
 public:
-	double dim = 100;
-	double asp = 1;
 	Window(const char *title, int sync, int width, int height,
-		   void (*key)(GLFWwindow *, int, int, int, int));
+		   void (*key)(GLFWwindow *, int, int, int, int),
+		   void (*mouse)(GLFWwindow *, int, int, int));
 	int FramesPerSecond();
 	~Window();
 	// void startDisplayLoop(void (*display)(Window*)); // this program isn't going to use this

@@ -1,6 +1,8 @@
 #include "../window/window.hpp"
 #include "../main/board.hpp"
 
+Board gameboard; // Global game board object
+
 /**
  * @brief respond to key pressed
  *
@@ -24,6 +26,28 @@ void key(GLFWwindow *windowobj, int key, int scancode, int action, int mods)
 }
 
 /**
+ * @brief respond to mouse button pressed
+ *
+ * @param windowobj
+ * @param button
+ * @param action
+ * @param mods
+ */
+void mouse(GLFWwindow *window, int button, int action, int mods)
+{
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	{
+		double xpos, ypos;
+		glfwGetCursorPos(window, &xpos, &ypos);
+		int xpix, ypix;
+		glfwGetWindowSize(window, &xpix, &ypix);
+		xpos = xpos / xpix * 2 * dim * asp - dim * asp; // Convert to world coordinates
+		ypos = ypos / ypix * 2 * dim - dim;				// Convert to world coordinates
+		gameboard.mouse_clicked(xpos, ypos);
+	}
+}
+
+/**
  * @brief main display loop
  *
  * @param windowobj
@@ -31,7 +55,7 @@ void key(GLFWwindow *windowobj, int key, int scancode, int action, int mods)
 void display_loop(Window *windowobj)
 {
 	// double last_time = glfwGetTime();
-	Board gameboard = Board();
+	gameboard = Board();
 
 	while (!glfwWindowShouldClose(windowobj->glwindow))
 	{
@@ -43,7 +67,7 @@ void display_loop(Window *windowobj)
 
 		// want to see fps
 		glColor3ub(nephritis.r, nephritis.g, nephritis.b);
-		glRasterPos2i(-windowobj->dim * windowobj->asp + 5, windowobj->dim - 5);
+		glRasterPos2i(-dim * asp + 5, dim - 5);
 		Print("FPS=%d", windowobj->FramesPerSecond());
 
 		// check for display errors
@@ -69,7 +93,7 @@ void display_loop(Window *windowobj)
  */
 int main(int argc, char *argv[])
 {
-	Window mainwindow("Collisions", 0, 800, 800, key);
+	Window mainwindow("Collisions", 0, 800, 800, key, mouse);
 	glDisable(GL_DEPTH_TEST);
 	glClearColor((float)midnight.r / 255.0, (float)midnight.g / 255.0, (float)midnight.b / 255.0, 1.0);
 
