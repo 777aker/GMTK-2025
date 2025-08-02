@@ -27,8 +27,9 @@ kanban-plugin: board
 	- [x] display board ✅ 2025-07-31
 	- [x] get the board left aligned, centered vertically ✅ 2025-08-01
 	- [x] piece class with what piece is in each square ✅ 2025-08-01
-	- [ ] call function of class based on where mouse is (ie mx / 10 % 50 = i in 2d array)
-	- [ ] call select function, then clicked
+	- [x] call function of class based on where mouse is (ie mx / 10 % 50 = i in 2d array) ✅ 2025-08-01
+	- [x] call select function, then clicked ✅ 2025-08-01
+	- [ ] init pieces on board
 - [ ] Chess Pieces
 	- [x] piece super class ✅ 2025-08-01
 	- [ ] where it can move function
