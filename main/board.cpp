@@ -22,18 +22,32 @@ Board::Board(color player_color)
     }
 
     // Player pieces
+    for (int i = 0; i < 8; i++)
+    {
+        pieces[i][1] = new Pawn(i, 1, player_color, this);
+    }
+    pieces[0][0] = new Rook(0, 0, player_color, this);
     pieces[1][0] = new Knight(1, 0, player_color, this);
     pieces[2][0] = new Bishop(2, 0, player_color, this);
-
+    pieces[3][0] = new Queen(3, 0, player_color, this);
+    pieces[4][0] = new King(4, 0, player_color, this);
     pieces[5][0] = new Bishop(5, 0, player_color, this);
     pieces[6][0] = new Knight(6, 0, player_color, this);
+    pieces[7][0] = new Rook(7, 0, player_color, this);
 
     // AI pieces
+    for (int i = 0; i < 8; i++)
+    {
+        pieces[i][6] = new Pawn(i, 6, ai_color, this);
+    }
+    pieces[0][7] = new Rook(0, 7, ai_color, this);
     pieces[1][7] = new Knight(1, 7, ai_color, this);
     pieces[2][7] = new Bishop(2, 7, ai_color, this);
-
+    pieces[3][7] = new Queen(3, 7, ai_color, this);
+    pieces[4][7] = new King(4, 7, ai_color, this);
     pieces[5][7] = new Bishop(5, 7, ai_color, this);
     pieces[6][7] = new Knight(6, 7, ai_color, this);
+    pieces[7][7] = new Rook(7, 7, ai_color, this);
 }
 
 Board::~Board()

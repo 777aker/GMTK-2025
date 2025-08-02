@@ -35,3 +35,9 @@ bool Knight::move_math(int xpos, int ypos)
     return (abs(this->xpos - xpos) == 2 && abs(this->ypos - ypos) == 1) ||
            (abs(this->xpos - xpos) == 1 && abs(this->ypos - ypos) == 2);
 }
+
+bool Knight::piece_between(int xpos, int ypos)
+{
+    // Knights can jump over pieces, so this always returns false
+    return false;
+}

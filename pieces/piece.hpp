@@ -27,6 +27,7 @@ protected:
     bool valid_space(int xpos, int ypos);
     bool same_team(int xpos, int ypos);
     virtual bool move_math(int xpos, int ypos) = 0;
+    bool piece_between(int xpos, int ypos);
 };
 
 #endif

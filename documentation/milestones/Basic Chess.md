@@ -19,20 +19,22 @@ kanban-plugin: board
 	- [ ] Difficulty? maybe out of scope
 	- [ ] Basic settings?
 	- [ ] customization settings like style or sound etc
+- [ ] That weird pawn capture when double move nonsense
 
 
 ## In Progress
 
-- [ ] All Pieces
-	- [ ] pawn
-	- [x] bishop ✅ 2025-08-02
-	- [ ] castle
-	- [ ] queen
-	- [ ] king
 
 
 ## Done
 
+- [ ] All Pieces
+	- [x] pawn ✅ 2025-08-02
+	- [x] bishop ✅ 2025-08-02
+	- [x] knight ✅ 2025-08-02
+	- [x] castle ✅ 2025-08-02
+	- [x] queen ✅ 2025-08-02
+	- [x] king ✅ 2025-08-02
 - [ ] Chess Pieces
 	- [x] piece super class ✅ 2025-08-01
 	- [x] where it can move function ✅ 2025-08-02

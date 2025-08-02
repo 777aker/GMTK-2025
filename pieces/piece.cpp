@@ -55,7 +55,7 @@ bool Piece::same_team(int xpos, int ypos)
 
 bool Piece::valid_space(int xpos, int ypos)
 {
-    return move_math(xpos, ypos) && !same_team(xpos, ypos);
+    return move_math(xpos, ypos) && !same_team(xpos, ypos) && !piece_between(xpos, ypos);
 }
 
 void Piece::clicked(int xpos, int ypos)
@@ -80,4 +80,9 @@ void Piece::clicked(int xpos, int ypos)
 void Piece::die()
 {
     printf("%c at (%d, %d) has died.\n", name, xpos, ypos);
+}
+
+bool Piece::piece_between(int xpos, int ypos)
+{
+    return false;
 }

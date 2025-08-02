@@ -14,6 +14,7 @@ public:
 
 protected:
     bool move_math(int xpos, int ypos);
+    bool piece_between(int xpos, int ypos);
 };
 
 #endif
