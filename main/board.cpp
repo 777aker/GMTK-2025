@@ -59,6 +59,14 @@ Board::Board(color player_color, int stockfish_elo, int stockfish_depth)
 
 Board::~Board()
 {
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            delete pieces[i][j];
+        }
+    }
+    delete stockfish;
 }
 
 void Board::draw_checkerboard()
@@ -112,6 +120,45 @@ void Board::draw()
     draw_pieces();
 }
 
+void Board::move_stockfish()
+{
+    std::string fen_str = "";
+    for (int y = 7; y >= 0; y--)
+    {
+        int empties = 0;
+        for (int x = 0; x < 8; x++)
+        {
+            Piece *piece = pieces[x][y];
+            if (piece != nullptr)
+            {
+                if (empties != 0)
+                {
+                    fen_str += std::to_string(empties);
+                    empties = 0;
+                }
+                fen_str += piece->name;
+            }
+            else
+            {
+                empties++;
+            }
+        }
+        if (empties != 0)
+            fen_str += std::to_string(empties);
+        if (y != 0)
+            fen_str += "/";
+    }
+    fen_str += " b";
+    fen_str += " ";
+    fen_str += can_castle;
+    fen_str += " ";
+    fen_str += enpassant;
+    fen_str += " 0 1";
+    stockfish->get_best_move(fen_str);
+
+    player_turn = true;
+}
+
 void Board::mouse_left_clicked(double xpos, double ypos)
 {
     printf("Mouse clicked at: (%f, %f)\n", xpos, ypos);
@@ -128,9 +175,13 @@ void Board::mouse_left_clicked(double xpos, double ypos)
         printf("Click out of bounds: (%d, %d)\n", x_tile, y_tile);
         return;
     }
-    if (selected_piece != nullptr)
+    if (selected_piece != nullptr && player_turn)
     {
-        selected_piece->clicked(x_tile, y_tile);
+        if (selected_piece->clicked(x_tile, y_tile))
+        {
+            player_turn = false;
+            move_stockfish();
+        }
         selected_piece = nullptr;
     }
     else

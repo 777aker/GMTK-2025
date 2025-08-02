@@ -19,6 +19,8 @@ kanban-plugin: board
 	- [ ] Basic settings?
 	- [ ] customization settings like style or sound etc
 - [ ] That weird pawn capture when double move nonsense
+- [ ] castling
+- [ ] promote piece
 
 
 ## In Progress
@@ -26,7 +28,7 @@ kanban-plugin: board
 - [ ] Chess AI
 	- [ ] some library where you feed board it gives you best move. convert that to our format
 	- [ ] after player moves ai make move
-	- [ ] player can't make move until ai does
+	- [x] player can't make move until ai does ✅ 2025-08-02
 
 
 ## Done

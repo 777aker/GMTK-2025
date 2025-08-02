@@ -8,10 +8,10 @@
 class Stockfish
 {
 public:
-    Stockfish::Stockfish(int elo, int depth);
-    Stockfish::~Stockfish();
-    void Stockfish::blast_cache();
-    std::string Stockfish::get_best_move(std::string fen_str);
+    Stockfish(int elo, int depth);
+    ~Stockfish();
+    void blast_cache();
+    std::string get_best_move(std::string fen_str);
 };
 
 #endif

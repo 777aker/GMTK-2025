@@ -19,13 +19,14 @@ public:
     Piece *pieces[8][8] = {}; // 2D array of pointers to pieces
     color player_color;
     color ai_color;
-    char enpassant[3] = "-";
-    char can_castle[5] = "KQkq";
+    std::string enpassant = "-";
+    std::string can_castle = "KQkq";
 
 private:
     bool player_turn = true;
     void draw_checkerboard();
     void draw_pieces();
+    void move_stockfish();
     float tile_size;                 // Width of each tile
     float top_left_x;                // Top left corner x-coordinate
     float top_left_y;                // Top left corner y-coordinate

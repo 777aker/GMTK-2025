@@ -14,11 +14,11 @@ public:
     void deselect();
     virtual void draw(double tile_pos_x, double tile_pos_y, double tile_size) = 0;
     void die();
-    void clicked(int xpos, int ypos);
+    bool clicked(int xpos, int ypos);
     color my_color;
+    char name;
 
 protected:
-    char name;
     bool selected = false;
     int xpos = 0;
     int ypos = 0;

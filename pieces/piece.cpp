@@ -58,23 +58,25 @@ bool Piece::valid_space(int xpos, int ypos)
     return move_math(xpos, ypos) && !same_team(xpos, ypos) && !piece_between(xpos, ypos);
 }
 
-void Piece::clicked(int xpos, int ypos)
+bool Piece::clicked(int xpos, int ypos)
 {
-    if (valid_space(xpos, ypos))
+    if (my_color.r == board->player_color.r && my_color.g == board->player_color.g && my_color.b == board->player_color.b)
     {
-        printf("%c clicked at: (%d, %d)\n", name, xpos, ypos);
-        // Move the knight to the new position
-        board->remove_piece(xpos, ypos);                 // Remove any piece at the target position
-        board->pieces[xpos][ypos] = this;                // Place knight at new position on the board
-        board->pieces[this->xpos][this->ypos] = nullptr; // Clear old position
-        this->xpos = xpos;                               // Update knight's position
-        this->ypos = ypos;
-    }
-    else
-    {
-        printf("Invalid move for %c to (%d, %d)\n", name, xpos, ypos);
+        if (valid_space(xpos, ypos))
+        {
+            printf("%c clicked at: (%d, %d)\n", name, xpos, ypos);
+            // Move the knight to the new position
+            board->remove_piece(xpos, ypos);                 // Remove any piece at the target position
+            board->pieces[xpos][ypos] = this;                // Place knight at new position on the board
+            board->pieces[this->xpos][this->ypos] = nullptr; // Clear old position
+            this->xpos = xpos;                               // Update knight's position
+            this->ypos = ypos;
+            deselect();
+            return true;
+        }
     }
     deselect();
+    return false;
 }
 
 void Piece::die()

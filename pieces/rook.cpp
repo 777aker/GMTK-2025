@@ -3,7 +3,16 @@
 Rook::Rook(int xpos, int ypos, color my_color, Board *board)
     : Piece(xpos, ypos, my_color, board)
 {
-    name = 'R';
+    if (my_color.r == board->player_color.r &&
+        my_color.g == board->player_color.g &&
+        my_color.b == board->player_color.b)
+    {
+        name = 'R';
+    }
+    else
+    {
+        name = 'r';
+    }
 }
 
 Rook::~Rook()
