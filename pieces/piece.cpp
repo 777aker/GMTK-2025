@@ -84,5 +84,20 @@ void Piece::die()
 
 bool Piece::piece_between(int xpos, int ypos)
 {
+    int x_dir = this->xpos > xpos ? -1 : 1;
+    if (this->xpos - xpos == 0)
+        x_dir = 0;
+    int y_dir = this->ypos > ypos ? -1 : 1;
+    if (this->ypos - ypos == 0)
+        y_dir = 0;
+    int i = this->xpos + x_dir, j = this->ypos + y_dir;
+    while ((i != xpos || x_dir == 0) && (j != ypos || y_dir == 0))
+    {
+        if (board->get_piece(i, j) != nullptr)
+            return true;
+        i += x_dir;
+        j += y_dir;
+    }
+
     return false;
 }

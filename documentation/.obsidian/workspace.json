@@ -13,7 +13,7 @@
             "state": {
               "type": "kanban",
               "state": {
-                "file": "milestones/Basic Chess.md",
+                "file": "Kanban.md",
                 "kanbanViewState": {
                   "kanban-plugin": "board",
                   "list-collapse": [
@@ -24,7 +24,7 @@
                 }
               },
               "icon": "lucide-trello",
-              "title": "Basic Chess"
+              "title": "Kanban"
             }
           }
         ]
@@ -175,10 +175,12 @@
       "obsidian-kanban:Create new board": false
     }
   },
-  "active": "6f6b138143ea11bd",
+  "active": "28dae6622e1e6004",
   "lastOpenFiles": [
     "Ideas.md",
-    "milestones/Basic Chess.md",
+    "Buffs.md",
+    "Kanban.md",
+    "Refinement.md",
     "Makefile",
     "milestones",
     "Get Basic OpenGL Project Working📅 2025-07-31.md",

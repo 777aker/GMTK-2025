@@ -9,14 +9,17 @@ kanban-plugin: board
 - [ ] Chess AI
 	- [ ] some library where you feed board it gives you best move. convert that to our format
 	- [ ] after player moves ai make move
+	- [ ] player can't make move until ai does
 - [ ] 2 Player
 	- [ ] after one player makes a move other player can make a move
+	- [ ] multiplayer or whatever
 - [ ] Game Over
 	- [ ] call someone a loser and have reset button
 - [ ] Menu
-	- [ ] AI
-	- [ ] 2 Player
-	- [ ] Difficulty? maybe out of scope
+	- [ ] AI difficulty
+	- [ ] Start Game
+	- [ ] Pick loop buffs
+	- [ ] Remove loop buffs
 	- [ ] Basic settings?
 	- [ ] customization settings like style or sound etc
 - [ ] That weird pawn capture when double move nonsense
@@ -28,6 +31,7 @@ kanban-plugin: board
 
 ## Done
 
+- [ ] Piece between
 - [ ] All Pieces
 	- [x] pawn ✅ 2025-08-02
 	- [x] bishop ✅ 2025-08-02
