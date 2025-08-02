@@ -29,6 +29,11 @@ struct color
 	int r;
 	int g;
 	int b;
+
+	bool operator==(const color &other) const
+	{
+		return (r == other.r && g == other.g && b == other.b);
+	}
 };
 
 const struct color turquoise = {26, 188, 156};	 // rgb(26, 188, 156)

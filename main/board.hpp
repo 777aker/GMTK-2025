@@ -25,6 +25,7 @@ public:
 private:
     bool player_turn = true;
     void draw_checkerboard();
+    std::string get_best_move();
     void draw_pieces();
     void move_stockfish();
     float tile_size;                 // Width of each tile

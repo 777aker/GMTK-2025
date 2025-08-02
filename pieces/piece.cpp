@@ -10,15 +10,11 @@ Piece::Piece(int xpos, int ypos, color my_color, Board *board)
     this->board = board;
     this->selected = false;
 
-    if (my_color.r == green_sea.r &&
-        my_color.g == green_sea.g &&
-        my_color.b == green_sea.b)
+    if (my_color == green_sea)
     {
         this->highlight_color = turquoise; // Example highlight color for green pieces
     }
-    else if (my_color.r == pumpkin.r &&
-             my_color.g == pumpkin.g &&
-             my_color.b == pumpkin.b)
+    else if (my_color == pumpkin)
     {
         this->highlight_color = carrot; // Example highlight color for red pieces
     }
@@ -44,9 +40,7 @@ bool Piece::same_team(int xpos, int ypos)
 {
     Piece *there_piece = board->get_piece(xpos, ypos);
     if (there_piece != nullptr &&
-        there_piece->my_color.r == my_color.r &&
-        there_piece->my_color.g == my_color.g &&
-        there_piece->my_color.b == my_color.b)
+        there_piece->my_color == my_color)
     {
         return true; // Same team
     }
@@ -58,22 +52,20 @@ bool Piece::valid_space(int xpos, int ypos)
     return move_math(xpos, ypos) && !same_team(xpos, ypos) && !piece_between(xpos, ypos);
 }
 
-bool Piece::clicked(int xpos, int ypos)
+bool Piece::move(int xpos, int ypos)
 {
-    if (my_color.r == board->player_color.r && my_color.g == board->player_color.g && my_color.b == board->player_color.b)
+
+    if (valid_space(xpos, ypos))
     {
-        if (valid_space(xpos, ypos))
-        {
-            printf("%c clicked at: (%d, %d)\n", name, xpos, ypos);
-            // Move the knight to the new position
-            board->remove_piece(xpos, ypos);                 // Remove any piece at the target position
-            board->pieces[xpos][ypos] = this;                // Place knight at new position on the board
-            board->pieces[this->xpos][this->ypos] = nullptr; // Clear old position
-            this->xpos = xpos;                               // Update knight's position
-            this->ypos = ypos;
-            deselect();
-            return true;
-        }
+        printf("%c moved to: (%d, %d)\n", name, xpos, ypos);
+        // Move the knight to the new position
+        board->remove_piece(xpos, ypos);                 // Remove any piece at the target position
+        board->pieces[xpos][ypos] = this;                // Place knight at new position on the board
+        board->pieces[this->xpos][this->ypos] = nullptr; // Clear old position
+        this->xpos = xpos;                               // Update knight's position
+        this->ypos = ypos;
+        deselect();
+        return true;
     }
     deselect();
     return false;

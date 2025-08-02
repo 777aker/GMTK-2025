@@ -32,7 +32,7 @@ void Pawn::draw(double tile_pos_x, double tile_pos_y, double tile_size)
 bool Pawn::move_math(int xpos, int ypos)
 {
     // Pawns move forward one square, or two squares from their starting position
-    if (my_color.r == board->player_color.r && my_color.g == board->player_color.g && my_color.b == board->player_color.b) // Assuming black pawns move up
+    if (my_color == board->player_color)
     {
         if (xpos == this->xpos && ypos == this->ypos + 1)
         {

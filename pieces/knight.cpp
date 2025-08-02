@@ -3,9 +3,7 @@
 Knight::Knight(int xpos, int ypos, color my_color, Board *board)
     : Piece(xpos, ypos, my_color, board)
 {
-    if (my_color.r == board->player_color.r &&
-        my_color.g == board->player_color.g &&
-        my_color.b == board->player_color.b)
+    if (my_color == board->player_color)
     {
         name = 'N';
     }

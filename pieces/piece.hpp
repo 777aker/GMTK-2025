@@ -14,7 +14,7 @@ public:
     void deselect();
     virtual void draw(double tile_pos_x, double tile_pos_y, double tile_size) = 0;
     void die();
-    bool clicked(int xpos, int ypos);
+    bool move(int xpos, int ypos);
     color my_color;
     char name;
 

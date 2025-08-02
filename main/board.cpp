@@ -14,9 +14,7 @@ using namespace boost::process;
 Board::Board(color player_color, int stockfish_elo, int stockfish_depth)
 {
     this->player_color = player_color;
-    if (player_color.r == green_sea.r &&
-        player_color.g == green_sea.g &&
-        player_color.b == green_sea.b)
+    if (player_color == green_sea)
     {
         this->ai_color = pumpkin; // Example AI color for green pieces
     }
@@ -120,7 +118,7 @@ void Board::draw()
     draw_pieces();
 }
 
-void Board::move_stockfish()
+std::string Board::get_best_move()
 {
     std::string fen_str = "";
     for (int y = 7; y >= 0; y--)
@@ -154,7 +152,12 @@ void Board::move_stockfish()
     fen_str += " ";
     fen_str += enpassant;
     fen_str += " 0 1";
-    stockfish->get_best_move(fen_str);
+    return stockfish->get_best_move(fen_str);
+}
+
+void Board::move_stockfish()
+{
+    std::string best_move = get_best_move();
 
     player_turn = true;
 }
@@ -177,10 +180,13 @@ void Board::mouse_left_clicked(double xpos, double ypos)
     }
     if (selected_piece != nullptr && player_turn)
     {
-        if (selected_piece->clicked(x_tile, y_tile))
+        if (selected_piece->my_color == player_color)
         {
-            player_turn = false;
-            move_stockfish();
+            if (selected_piece->move(x_tile, y_tile))
+            {
+                player_turn = false;
+                move_stockfish();
+            }
         }
         selected_piece = nullptr;
     }
