@@ -2,20 +2,22 @@
 #define BOARD_HPP
 
 #include "../window/window.hpp"
-#include "../pieces/piece.hpp"
+class Piece;
 
 class Board
 {
 public:
-    Board();
+    Board(color player_color);
     ~Board();
     void draw();
     void mouse_clicked(double xpos, double ypos);
     Piece *get_piece(int xpos, int ypos);
+    void remove_piece(int xpos, int ypos);
 
 private:
     void draw_checkerboard();
     void draw_pieces();
+    color player_color;
     float tile_size;                 // Width of each tile
     float top_left_x;                // Top left corner x-coordinate
     float top_left_y;                // Top left corner y-coordinate

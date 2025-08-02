@@ -17,8 +17,9 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
-all: bishop.o king.o knight.o pawn.o queen.o rook.o
+all: piece.o bishop.o king.o knight.o pawn.o queen.o rook.o
 
+piece.o: piece.cpp
 bishop.o: bishop.cpp
 king.o: king.cpp
 knight.o: knight.cpp
