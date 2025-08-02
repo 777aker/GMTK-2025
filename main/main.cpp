@@ -63,7 +63,7 @@ void display_loop(Window *windowobj)
 		// double now = glfwGetTime();
 		// double deltaTime = now - last_time;
 
-		gameboard.draw(windowobj);
+		gameboard.draw();
 
 		// want to see fps
 		glColor3ub(nephritis.r, nephritis.g, nephritis.b);

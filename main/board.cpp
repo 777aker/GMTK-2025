@@ -8,7 +8,7 @@ Board::~Board()
 {
 }
 
-void Board::draw_checkerboard(Window *windowobj)
+void Board::draw_checkerboard()
 {
     tile_size = asp < 1 ? dim * asp * 0.2 : dim * 0.2;
     top_left_x = -dim * asp + (dim * asp * 0.1);
@@ -37,16 +37,55 @@ void Board::draw_checkerboard(Window *windowobj)
     }
 }
 
-void Board::draw(Window *windowobj)
+void Board::draw_pieces()
 {
-    draw_checkerboard(windowobj);
+    // Placeholder for drawing pieces
+    // This function should iterate through the pieces array and call their draw methods
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            if (pieces[i][j] != nullptr)
+            {
+                pieces[i][j]->draw();
+            }
+        }
+    }
+}
+
+void Board::draw()
+{
+    draw_checkerboard();
+    draw_pieces();
 }
 
 void Board::mouse_clicked(double xpos, double ypos)
 {
     printf("Mouse clicked at: (%f, %f)\n", xpos, ypos);
+    int x_tile = static_cast<int>((xpos - top_left_x) / tile_size);
+    int y_tile = static_cast<int>((ypos - top_left_y) / tile_size) - 1;
+    if (selected_piece != nullptr)
+    {
+        selected_piece->clicked();
+        selected_piece = nullptr;
+    }
+    else
+    {
+        selected_piece = get_piece(x_tile, y_tile);
+        if (selected_piece == nullptr)
+        {
+            printf("No piece at (%d, %d)\n", x_tile, y_tile);
+            return;
+        }
+        else
+        {
+            selected_piece->select();
+        }
+    }
 }
 
-void Board::get_piece(double xpos, double ypos)
+Piece *Board::get_piece(int xpos, int ypos)
 {
+    printf("Piece (%d, %d)\n", xpos, ypos);
+    return pieces[xpos][ypos];
 }
