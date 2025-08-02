@@ -43,7 +43,11 @@ void mouse(GLFWwindow *window, int button, int action, int mods)
 		glfwGetWindowSize(window, &xpix, &ypix);
 		xpos = xpos / xpix * 2 * dim * asp - dim * asp; // Convert to world coordinates
 		ypos = ypos / ypix * 2 * dim - dim;				// Convert to world coordinates
-		gameboard->mouse_clicked(xpos, ypos);
+		gameboard->mouse_left_clicked(xpos, ypos);
+	}
+	else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	{
+		gameboard->mouse_right_clicked();
 	}
 }
 

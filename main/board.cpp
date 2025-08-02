@@ -1,9 +1,39 @@
 #include "board.hpp"
 #include "../pieces/piece.hpp"
+#include "../pieces/bishop.hpp"
+#include "../pieces/rook.hpp"
+#include "../pieces/knight.hpp"
+#include "../pieces/queen.hpp"
+#include "../pieces/king.hpp"
+#include "../pieces/pawn.hpp"
 
 Board::Board(color player_color)
 {
     this->player_color = player_color;
+    if (player_color.r == green_sea.r &&
+        player_color.g == green_sea.g &&
+        player_color.b == green_sea.b)
+    {
+        this->ai_color = pumpkin; // Example AI color for green pieces
+    }
+    else
+    {
+        this->ai_color = green_sea; // Example AI color for red pieces
+    }
+
+    // Player pieces
+    pieces[1][0] = new Knight(1, 0, player_color, this);
+    pieces[2][0] = new Bishop(2, 0, player_color, this);
+
+    pieces[5][0] = new Bishop(5, 0, player_color, this);
+    pieces[6][0] = new Knight(6, 0, player_color, this);
+
+    // AI pieces
+    pieces[1][7] = new Knight(1, 7, ai_color, this);
+    pieces[2][7] = new Bishop(2, 7, ai_color, this);
+
+    pieces[5][7] = new Bishop(5, 7, ai_color, this);
+    pieces[6][7] = new Knight(6, 7, ai_color, this);
 }
 
 Board::~Board()
@@ -61,13 +91,19 @@ void Board::draw()
     draw_pieces();
 }
 
-void Board::mouse_clicked(double xpos, double ypos)
+void Board::mouse_left_clicked(double xpos, double ypos)
 {
     printf("Mouse clicked at: (%f, %f)\n", xpos, ypos);
     int x_tile = static_cast<int>((xpos - top_left_x) / tile_size);
-    int y_tile = static_cast<int>((ypos - top_left_y) / tile_size) - 1;
+    double bottom_left_y = top_left_y + 9 * tile_size;
+    int y_tile = static_cast<int>((-ypos + bottom_left_y) / tile_size);
     if (x_tile < 0 || x_tile >= 8 || y_tile < 0 || y_tile >= 8)
     {
+        if (selected_piece != nullptr)
+        {
+            selected_piece->deselect();
+            selected_piece = nullptr;
+        }
         printf("Click out of bounds: (%d, %d)\n", x_tile, y_tile);
         return;
     }
@@ -89,6 +125,16 @@ void Board::mouse_clicked(double xpos, double ypos)
             selected_piece->select(this->player_color);
         }
     }
+}
+
+void Board::mouse_right_clicked()
+{
+    if (selected_piece != nullptr)
+    {
+        selected_piece->deselect();
+        selected_piece = nullptr;
+    }
+    printf("Right click detected, deselecting piece.\n");
 }
 
 Piece *Board::get_piece(int xpos, int ypos)
