@@ -9,8 +9,6 @@ kanban-plugin: board
 - [ ] 2 Player
 	- [ ] after one player makes a move other player can make a move
 	- [ ] multiplayer or whatever
-- [ ] Game Over
-	- [ ] call someone a loser and have reset button
 - [ ] Menu
 	- [ ] AI difficulty
 	- [ ] Start Game
@@ -25,14 +23,16 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] Chess AI
-	- [ ] some library where you feed board it gives you best move. convert that to our format
-	- [x] after player moves ai make move ✅ 2025-08-02
-	- [x] player can't make move until ai does ✅ 2025-08-02
+- [ ] Game Over
+	- [ ] call someone a loser and have reset button
 
 
 ## Done
 
+- [ ] Chess AI
+	- [x] some library where you feed board it gives you best move. convert that to our format ✅ 2025-08-02
+	- [x] after player moves ai make move ✅ 2025-08-02
+	- [x] player can't make move until ai does ✅ 2025-08-02
 - [ ] Piece between
 - [ ] All Pieces
 	- [x] pawn ✅ 2025-08-02

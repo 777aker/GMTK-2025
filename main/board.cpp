@@ -165,6 +165,7 @@ std::string Board::get_best_move()
 
 bool Board::take_king()
 {
+    return false;
 }
 
 void Board::move_stockfish()
@@ -175,13 +176,39 @@ void Board::move_stockfish()
     }
     std::string best_move = get_best_move();
 
+    if (best_move.find("none") != std::string::npos)
+    {
+        printf("Player won!");
+        return;
+    }
+
     int xfrom = best_move[0] - 'a';
     int yfrom = best_move[1] - '1';
     int xto = best_move[2] - 'a';
     int yto = best_move[3] - '1';
 
     Piece *move = get_piece(xfrom, yfrom);
-    move->move(xto, yto);
+    if (!move->move(xto, yto))
+    {
+        // It tried castle or el passant try ponder and hope
+        int ponder = best_move.find("ponder");
+        if (ponder == std::string::npos)
+        {
+            printf("I was hoping for a ponder but there isn't. Take an extra turn!\n");
+            player_turn = true;
+            return;
+        }
+
+        xfrom = best_move[ponder + 7] - 'a';
+        yfrom = best_move[ponder + 8] - '1';
+        xto = best_move[ponder + 9] - 'a';
+        yto = best_move[ponder + 10] - '1';
+        move = get_piece(xfrom, yfrom);
+        if (!move->move(xto, yto))
+        {
+            printf("I can't do what stockfish wants. It is too good. Take an extra turn!\n");
+        }
+    }
 
     player_turn = true;
 }
