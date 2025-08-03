@@ -6,6 +6,7 @@ kanban-plugin: board
 
 ## TODO
 
+- [ ] free opengl textures done with?
 - [ ] 2 Player
 	- [ ] after one player makes a move other player can make a move
 	- [ ] multiplayer or whatever
@@ -18,14 +19,13 @@ kanban-plugin: board
 
 - [ ] promote piece, works?
 - [ ] loop
-	- [ ] buff vector
-	- [ ] apply next x buffs
-	- [ ] display active buffs
+	- [x] buff vector ✅ 2025-08-03
+	- [x] apply next x buffs ✅ 2025-08-03
+	- [x] display active buffs ✅ 2025-08-03
 	- [ ] display next 10 buffs
 	- [ ] change modifier based on buff goodness
 - [ ] fix piece sizes
 - [ ] highlight pieces
-- [ ] free opengl textures done with?
 
 
 ## Done

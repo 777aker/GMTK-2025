@@ -6,12 +6,25 @@
 #include <fstream>
 #include <iostream>
 
+extern int stickies;
+extern bool invisible;
+extern bool pexp;
+extern bool Pexp;
+extern int spawn_b;
+extern int spawn_B;
+extern int hammer;
+extern int promoteq;
+extern int promoteQ;
+extern int stones;
+
+class Buff;
+
 class Piece;
 
 class Board
 {
 public:
-    Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount, int filter_shader);
+    Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount, int filter_shader, std::vector<Buff *> buffs);
     ~Board();
     void draw(double deltaTime);
     void mouse_left_clicked(double xpos, double ypos);
@@ -30,6 +43,11 @@ public:
     int loop_num;
     bool ready_for_delete = false;
     int filter_shader;
+    float tile_size;  // Width of each tile
+    float top_left_x; // Top left corner x-coordinate
+    float top_left_y; // Top left corner y-coordinate
+    int loop_pos = 0;
+    std::vector<Buff *> buffs;
 
 private:
     bool get_stockfish = false;
@@ -40,11 +58,9 @@ private:
     Piece *player_king;
     bool take_king();
     void move_stockfish();
-    float tile_size;                 // Width of each tile
-    float top_left_x;                // Top left corner x-coordinate
-    float top_left_y;                // Top left corner y-coordinate
     Piece *selected_piece = nullptr; // Pointer to the currently selected piece
     Stockfish *stockfish = nullptr;
+    void apply_loop();
 };
 
 #endif

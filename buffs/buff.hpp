@@ -2,6 +2,7 @@
 #define BUFF_HPP
 
 #include <string>
+#include <stdlib.h>
 #include "../window/window.hpp"
 
 class Buff
@@ -21,13 +22,13 @@ public:
         glBindTexture(GL_TEXTURE_2D, texture);
 
         glBegin(GL_QUADS);
-        glTexCoord2f(1.0, 0.0);
-        glVertex2f(xpos, -ypos); // Top right corner
         glTexCoord2f(1.0, 1.0);
+        glVertex2f(xpos, -ypos); // Top right corner
+        glTexCoord2f(1.0, 0.0);
         glVertex2f(xpos, -(ypos + dim * buf_size)); // Top left corner
-        glTexCoord2f(0.0, 1.0);
-        glVertex2f(xpos + dim * buf_size, -(ypos + dim * buf_size)); // Bottom left corner
         glTexCoord2f(0.0, 0.0);
+        glVertex2f(xpos + dim * buf_size, -(ypos + dim * buf_size)); // Bottom left corner
+        glTexCoord2f(0.0, 1.0);
         glVertex2f(xpos + dim * buf_size, -ypos); // Bottom right corner
         glEnd();
         glDisable(GL_TEXTURE_2D);

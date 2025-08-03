@@ -8,14 +8,28 @@
 #include "../pieces/queen.hpp"
 #include "../pieces/king.hpp"
 #include "../pieces/pawn.hpp"
+#include "../buffs/buff.hpp"
+#include "../buffs/nothin.hpp"
 
 using namespace boost::process;
 
-Board::Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount, int filter_shader)
+int stickies = 0;
+bool invisible = false;
+bool pexp = false;
+bool Pexp = false;
+int spawn_b = 0;
+int spawn_B = 0;
+int hammer = 0;
+int promoteq = 0;
+int promoteQ = 0;
+int stones = 0;
+
+Board::Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount, int filter_shader, std::vector<Buff *> buffs)
 {
     this->player_color = player_color;
     this->loop_num = loop_amount;
     this->filter_shader = filter_shader;
+    this->buffs = buffs;
     if (player_color == green_sea)
     {
         this->ai_color = pumpkin; // Example AI color for green pieces
@@ -60,6 +74,16 @@ Board::Board(color player_color, int stockfish_elo, int stockfish_depth, int loo
 
 Board::~Board()
 {
+    stickies = 0;
+    invisible = false;
+    pexp = false;
+    Pexp = false;
+    spawn_b = 0;
+    spawn_B = 0;
+    hammer = 0;
+    promoteq = 0;
+    promoteQ = 0;
+    stones = 0;
     for (int i = 0; i < 8; i++)
     {
         for (int j = 0; j < 8; j++)
@@ -124,13 +148,37 @@ void Board::draw_pieces(double deltaTime)
     glUseProgram(0);
 }
 
+void Board::apply_loop()
+{
+    int cur_iters = 0;
+    while (cur_iters < loop_num)
+    {
+        modifier += buffs[loop_pos]->loop();
+        loop_pos++;
+        cur_iters++;
+        if (loop_pos >= buffs.size())
+        {
+            modifier = 0;
+            loop_pos = 0;
+            stickies = 0;
+            invisible = false;
+            pexp = false;
+            Pexp = false;
+            spawn_b = 0;
+            spawn_B = 0;
+            hammer = 0;
+            promoteq = 0;
+            promoteQ = 0;
+            stones = 0;
+        }
+    }
+    score += modifier;
+}
+
 void Board::draw(double deltaTime)
 {
     draw_checkerboard();
     draw_pieces(deltaTime);
-    glColor3ub(nephritis.r, nephritis.g, nephritis.b);
-    glRasterPos2i(-dim * asp + 5, dim - 20);
-    Print("Current Game Score = %lf, each turn score += %lf", score, modifier);
     if (!run_game)
         return;
 
@@ -241,6 +289,8 @@ void Board::move_stockfish()
             printf("I can't do what stockfish wants. It is too good. Take an extra turn!\n");
         }
     }
+
+    apply_loop();
 
     player_turn = true;
 }

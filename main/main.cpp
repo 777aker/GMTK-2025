@@ -6,6 +6,17 @@
 
 #include "../buffs/buff.hpp"
 #include "../buffs/nothin.hpp"
+#include "../buffs/bishops.hpp"
+#include "../buffs/bishops_bad.hpp"
+#include "../buffs/bishops_good.hpp"
+#include "../buffs/hammer.hpp"
+#include "../buffs/invisible_enemies.hpp"
+#include "../buffs/pawns_exp_bad.hpp"
+#include "../buffs/pawns_exp_good.hpp"
+#include "../buffs/promote_bad.hpp"
+#include "../buffs/promote_good.hpp"
+#include "../buffs/sticky_hand.hpp"
+#include "../buffs/stone.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -15,7 +26,7 @@ bool main_menu = true;
 Board *gameboard = nullptr; // Global game board object
 #define MAIN_BUTTONS 2
 Button *main_menu_buttons[MAIN_BUTTONS] = {};
-#define BUFFS 1
+#define BUFFS 12
 Buff *main_menu_buffs[BUFFS] = {};
 #define MAIN_FIELDS 3
 NumberField *main_menu_fields[MAIN_FIELDS] = {};
@@ -147,7 +158,7 @@ void draw_main_menu(double high_score)
 void start_game()
 {
 	printf("Starting game: elo %d, depth %d, loop %d\n", bot_elo, depth, loop_amount);
-	gameboard = new Board(green_sea, bot_elo, depth, loop_amount, filter_shader);
+	gameboard = new Board(green_sea, bot_elo, depth, loop_amount, filter_shader, game_buffs);
 	main_menu = false;
 }
 
@@ -195,6 +206,20 @@ void display_loop(Window *windowobj)
 	main_menu_fields[2] = loop_f;
 
 	main_menu_buffs[0] = new Nothin();
+	main_menu_buffs[1] = new BishopsBad();
+	main_menu_buffs[2] = new BishopsGood();
+	main_menu_buffs[3] = new Bishops();
+	main_menu_buffs[4] = new Hammer();
+	main_menu_buffs[5] = new InvisibleEnemies();
+	main_menu_buffs[6] = new PawnsExplodeBad();
+	main_menu_buffs[7] = new PawnsExplodeGood();
+	main_menu_buffs[8] = new PromoteBad();
+	main_menu_buffs[9] = new PromoteGood();
+	main_menu_buffs[10] = new StickyHand();
+	main_menu_buffs[11] = new Stone();
+
+	double current_score = 0;
+	double current_modifier = 0;
 
 	while (!glfwWindowShouldClose(windowobj->glwindow))
 	{
@@ -218,6 +243,53 @@ void display_loop(Window *windowobj)
 			{
 				high_score = gameboard->score;
 			}
+			current_score = gameboard->score;
+			current_modifier = gameboard->modifier;
+
+			double active_x = gameboard->top_left_x + gameboard->tile_size * 8 + dim * 0.2;
+			glColor3ub(nephritis.r, nephritis.g, nephritis.b);
+			glRasterPos2i(active_x, dim * 0.3);
+			Print("ACTIVE BUFFS:");
+			if (invisible)
+			{
+				main_menu_buffs[5]->draw(active_x, -dim * 0.8);
+			}
+			if (pexp)
+			{
+				main_menu_buffs[6]->draw(active_x, -dim * 0.6);
+			}
+			if (Pexp)
+			{
+				main_menu_buffs[7]->draw(active_x, -dim * 0.4);
+			}
+			for (int i = 0; i < stickies; i++)
+			{
+				main_menu_buffs[10]->draw(active_x + i * dim * 0.1, -dim * 0.2);
+			}
+			for (int i = 0; i < hammer; i++)
+			{
+				main_menu_buffs[4]->draw(active_x + i * dim * 0.1, -dim * 0.0);
+			}
+			for (int i = 0; i < stones; i++)
+			{
+				main_menu_buffs[11]->draw(active_x + i * dim * 0.1, dim * 0.2);
+			}
+			glColor3ub(nephritis.r, nephritis.g, nephritis.b);
+			glRasterPos2i(active_x, dim * 0.6);
+			Print("NEXT BUFFS:");
+			int i = 0;
+			int xtrack = 0;
+			while (xtrack < 10)
+			{
+				if ((gameboard->loop_pos + i % gameboard->buffs.size()) == 0)
+				{
+					main_menu_buffs[0]->draw(active_x + xtrack * dim * 0.1, -dim * 0.6);
+					xtrack++;
+				}
+				gameboard->buffs[(gameboard->loop_pos + i) % gameboard->buffs.size()]->draw(active_x + xtrack * dim * 0.1, -dim * 0.6);
+				i++;
+				xtrack++;
+			}
 		}
 
 		if (gameboard != nullptr && gameboard->ready_for_delete)
@@ -226,6 +298,8 @@ void display_loop(Window *windowobj)
 			{
 				high_score = gameboard->score;
 			}
+			current_score = gameboard->score;
+			current_modifier = gameboard->modifier;
 			delete gameboard;
 			gameboard = nullptr;
 		}
@@ -237,6 +311,8 @@ void display_loop(Window *windowobj)
 		glRasterPos2i(-dim * asp + 5, dim - 10);
 		Print("Your highest score = %lf", high_score);
 		glRasterPos2i(-dim * asp + 5, dim - 15);
+		Print("Your current score = %lf, score += %f each turn", current_score, current_modifier);
+		glRasterPos2i(-dim * asp + 5, dim - 20);
 		Print("Press ESCAPE to quit or start a new game");
 
 		// check for display errors
