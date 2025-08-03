@@ -99,7 +99,7 @@ void Board::draw_checkerboard()
     }
 }
 
-void Board::draw_pieces()
+void Board::draw_pieces(double deltaTime)
 {
     // Placeholder for drawing pieces
     // This function should iterate through the pieces array and call their draw methods
@@ -117,17 +117,17 @@ void Board::draw_pieces()
         {
             if (pieces[i][j] != nullptr)
             {
-                pieces[i][j]->draw(top_left_x + i * tile_size, top_left_y + j * tile_size, tile_size, filter_shader);
+                pieces[i][j]->draw(top_left_x + i * tile_size, top_left_y + j * tile_size, tile_size, filter_shader, deltaTime);
             }
         }
     }
     glUseProgram(0);
 }
 
-void Board::draw()
+void Board::draw(double deltaTime)
 {
     draw_checkerboard();
-    draw_pieces();
+    draw_pieces(deltaTime);
     glColor3ub(nephritis.r, nephritis.g, nephritis.b);
     glRasterPos2i(-dim * asp + 5, dim - 20);
     Print("Current Game Score = %lf, each turn score += %lf", score, modifier);

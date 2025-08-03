@@ -13,7 +13,7 @@ class Board
 public:
     Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount, int filter_shader);
     ~Board();
-    void draw();
+    void draw(double deltaTime);
     void mouse_left_clicked(double xpos, double ypos);
     void mouse_right_clicked();
     Piece *get_piece(int xpos, int ypos);
@@ -36,7 +36,7 @@ private:
     bool player_turn = true;
     void draw_checkerboard();
     std::string get_best_move();
-    void draw_pieces();
+    void draw_pieces(double deltaTime);
     Piece *player_king;
     bool take_king();
     void move_stockfish();

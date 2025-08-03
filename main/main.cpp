@@ -2,19 +2,26 @@
 #include "../main/board.hpp"
 #include "../ui/button.hpp"
 #include "../ui/number_field.hpp"
+#include "../buffs/buff.hpp"
+
+#include "../buffs/buff.hpp"
+#include "../buffs/nothin.hpp"
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 bool main_menu = true;
 Board *gameboard = nullptr; // Global game board object
 #define MAIN_BUTTONS 2
 Button *main_menu_buttons[MAIN_BUTTONS] = {};
-#define BUFFS 0
-Button *main_menu_buffs[BUFFS] = {};
+#define BUFFS 1
+Buff *main_menu_buffs[BUFFS] = {};
 #define MAIN_FIELDS 3
 NumberField *main_menu_fields[MAIN_FIELDS] = {};
 NumberField *selected_field = nullptr;
+
+std::vector<Buff *> game_buffs;
 
 int bot_elo = 1320;
 int depth = 10;
@@ -84,7 +91,10 @@ void mouse(GLFWwindow *window, int button, int action, int mods)
 			}
 			for (int i = 0; i < BUFFS; i++)
 			{
-				main_menu_buffs[i]->clicked(xpos, ypos);
+				if (main_menu_buffs[i]->clicked(-dim * asp + i * dim * 0.2, 0, xpos, ypos))
+				{
+					game_buffs.push_back(main_menu_buffs[i]);
+				}
 			}
 			bool was_selected = false;
 			for (int i = 0; i < MAIN_FIELDS; i++)
@@ -117,13 +127,20 @@ void draw_main_menu(double high_score)
 	{
 		main_menu_buttons[i]->draw_button();
 	}
+	glColor3ub(nephritis.r, nephritis.g, nephritis.b);
+	glRasterPos2i(-dim * asp + 5, dim * 0.05);
+	Print("CLICK a buff to add it to the loop");
 	for (int i = 0; i < BUFFS; i++)
 	{
-		main_menu_buffs[i]->draw_button();
+		main_menu_buffs[i]->draw(-dim * asp + 5 + i * dim * 0.2, 0);
 	}
 	for (int i = 0; i < MAIN_FIELDS; i++)
 	{
 		main_menu_fields[i]->draw_field();
+	}
+	for (long unsigned int i = 0; i < game_buffs.size(); i++)
+	{
+		game_buffs[i]->draw(-dim * asp + 5 + i * 0.16 * dim, dim * 0.7);
 	}
 }
 
@@ -137,6 +154,7 @@ void start_game()
 void remove_buffs()
 {
 	printf("Removing buffs\n");
+	game_buffs.clear();
 }
 
 /**
@@ -146,7 +164,7 @@ void remove_buffs()
  */
 void display_loop(Window *windowobj)
 {
-	// double last_time = glfwGetTime();
+	double last_time = glfwGetTime();
 
 	std::ifstream scores("scores.txt");
 	std::string line;
@@ -176,11 +194,14 @@ void display_loop(Window *windowobj)
 	NumberField *loop_f = new NumberField(&loop_amount, 1, 50, 0, -dim * 0.2, 1, loop_str);
 	main_menu_fields[2] = loop_f;
 
+	main_menu_buffs[0] = new Nothin();
+
 	while (!glfwWindowShouldClose(windowobj->glwindow))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		// double now = glfwGetTime();
-		// double deltaTime = now - last_time;
+		double now = glfwGetTime();
+		double deltaTime = now - last_time;
+		last_time = now;
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glBlendEquation(GL_FUNC_ADD);
@@ -192,7 +213,7 @@ void display_loop(Window *windowobj)
 
 		if (!main_menu && gameboard != nullptr && !gameboard->ready_for_delete)
 		{
-			gameboard->draw();
+			gameboard->draw(deltaTime);
 			if (gameboard->score > high_score)
 			{
 				high_score = gameboard->score;

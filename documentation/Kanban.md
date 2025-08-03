@@ -16,16 +16,7 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] Menu
-	- [x] AI difficulty ✅ 2025-08-03
-	- [x] Start Game ✅ 2025-08-03
-	- [ ] Pick loop buffs
-	- [ ] Remove loop buffs
-	- [x] Game over restart ✅ 2025-08-02
-	- [x] display high score ✅ 2025-08-03
-	- [x] display score during game ✅ 2025-08-03
-	- [x] score file ✅ 2025-08-02
-- [ ] promote piece
+- [ ] promote piece, works?
 - [ ] loop
 	- [ ] buff vector
 	- [ ] apply next x buffs
@@ -33,15 +24,26 @@ kanban-plugin: board
 	- [ ] display next 10 buffs
 	- [ ] change modifier based on buff goodness
 - [ ] fix piece sizes
-- [ ] fix p1 texture
-- [ ] animate pieces
-	- [ ] random start
-	- [ ] random loop time
-	- [ ] loop
+- [ ] highlight pieces
+- [ ] free opengl textures done with?
 
 
 ## Done
 
+- [ ] Menu
+	- [x] AI difficulty ✅ 2025-08-03
+	- [x] Start Game ✅ 2025-08-03
+	- [x] Pick loop buffs ✅ 2025-08-03
+	- [x] Remove loop buffs ✅ 2025-08-03
+	- [x] Game over restart ✅ 2025-08-02
+	- [x] display high score ✅ 2025-08-03
+	- [x] display score during game ✅ 2025-08-03
+	- [x] score file ✅ 2025-08-02
+- [ ] fix p1 texture
+- [ ] animate pieces
+	- [x] random start ✅ 2025-08-03
+	- [x] random loop time ✅ 2025-08-03
+	- [x] loop ✅ 2025-08-03
 - [ ] Game Over
 	- [x] call someone a loser and have reset button ✅ 2025-08-02
 - [ ] Chess AI

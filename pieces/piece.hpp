@@ -12,7 +12,7 @@ public:
     virtual ~Piece() = 0;
     void select(color player_color);
     void deselect();
-    void draw(double tile_pos_x, double tile_pos_y, double tile_size, int filter_shader);
+    void draw(double tile_pos_x, double tile_pos_y, double tile_size, int filter_shader, double deltaTime);
     void die();
     bool move(int xpos, int ypos);
     color my_color;
@@ -29,6 +29,9 @@ protected:
     virtual bool move_math(int xpos, int ypos) = 0;
     bool piece_between(int xpos, int ypos);
     unsigned int textures[3] = {};
+    unsigned int current_tex;
+    double tex_time;
+    double accumulated_time = 0;
     void get_textures();
 };
 

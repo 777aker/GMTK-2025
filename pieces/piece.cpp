@@ -2,6 +2,8 @@
 
 #include "../main/board.hpp"
 
+#include <cstdlib>
+
 Piece::Piece(int xpos, int ypos, color my_color, Board *board)
 {
     this->xpos = xpos;
@@ -9,6 +11,9 @@ Piece::Piece(int xpos, int ypos, color my_color, Board *board)
     this->my_color = my_color;
     this->board = board;
     this->selected = false;
+
+    this->current_tex = std::rand() % 3;
+    this->tex_time = 0.2 + double(std::rand() % 10) / 50.0;
 
     if (my_color == green_sea)
     {
@@ -107,13 +112,20 @@ void Piece::get_textures()
     textures[2] = LoadTexBMP(tex_loc.c_str());
 }
 
-void Piece::draw(double tile_pos_x, double tile_pos_y, double tile_size, int filter_shader)
+void Piece::draw(double tile_pos_x, double tile_pos_y, double tile_size, int filter_shader, double deltaTime)
 {
     int id = -1;
+    accumulated_time += deltaTime;
+
+    if (accumulated_time > tex_time)
+    {
+        accumulated_time = 0;
+        current_tex = (current_tex + 1) % 3;
+    }
 
     glEnable(GL_TEXTURE_2D);
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-    glBindTexture(GL_TEXTURE_2D, textures[0]);
+    glBindTexture(GL_TEXTURE_2D, textures[current_tex]);
     id = glGetAttribLocation(filter_shader, "aTexCoord");
 
     glBegin(GL_QUADS);

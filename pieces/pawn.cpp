@@ -1,4 +1,5 @@
 #include "pawn.hpp"
+#include "queen.hpp"
 
 Pawn::Pawn(int xpos, int ypos, color my_color, Board *board)
     : Piece(xpos, ypos, my_color, board)
@@ -58,5 +59,43 @@ bool Pawn::move_math(int xpos, int ypos)
         }
     }
 
+    return false;
+}
+
+bool Pawn::move(int xpos, int ypos)
+{
+    if (valid_space(xpos, ypos))
+    {
+        printf("%c moved to: (%d, %d)\n", name, xpos, ypos);
+        // Move the knight to the new position
+        board->remove_piece(xpos, ypos);                 // Remove any piece at the target position
+        board->pieces[xpos][ypos] = this;                // Place knight at new position on the board
+        board->pieces[this->xpos][this->ypos] = nullptr; // Clear old position
+        this->xpos = xpos;                               // Update knight's position
+        this->ypos = ypos;
+        deselect();
+
+        if (my_color == board->player_color)
+        {
+            if (ypos == 7)
+            {
+                Queen *que = new Queen(xpos, ypos, my_color, board);
+                board->pieces[xpos][ypos] = que;
+                delete this;
+            }
+        }
+        else
+        {
+            if (ypos == 0)
+            {
+                Queen *que = new Queen(xpos, ypos, my_color, board);
+                board->pieces[xpos][ypos] = que;
+                delete this;
+            }
+        }
+
+        return true;
+    }
+    deselect();
     return false;
 }
