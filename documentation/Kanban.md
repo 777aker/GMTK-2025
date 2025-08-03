@@ -18,18 +18,18 @@ kanban-plugin: board
 ## In Progress
 
 - [ ] promote piece, works?
-- [ ] loop
-	- [x] buff vector ✅ 2025-08-03
-	- [x] apply next x buffs ✅ 2025-08-03
-	- [x] display active buffs ✅ 2025-08-03
-	- [ ] display next 10 buffs
-	- [ ] change modifier based on buff goodness
 - [ ] fix piece sizes
 - [ ] highlight pieces
 
 
 ## Done
 
+- [ ] loop
+	- [x] buff vector ✅ 2025-08-03
+	- [x] apply next x buffs ✅ 2025-08-03
+	- [x] display active buffs ✅ 2025-08-03
+	- [x] display next 10 buffs ✅ 2025-08-03
+	- [x] change modifier based on buff goodness ✅ 2025-08-03
 - [ ] Menu
 	- [x] AI difficulty ✅ 2025-08-03
 	- [x] Start Game ✅ 2025-08-03
