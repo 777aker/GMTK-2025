@@ -395,7 +395,7 @@ void Board::remove_piece(int xpos, int ypos)
     if (pieces[xpos][ypos] != nullptr)
     {
         Piece *killing = pieces[xpos][ypos];
-        if (pexp && killing->name == 'p' || Pexp && killing->name == 'P')
+        if ((pexp && killing->name == 'p') || (Pexp && killing->name == 'P'))
         {
             int left_x = xpos - 1 < 0 ? 0 : xpos - 1;
             int right_x = xpos + 1 > 7 ? 7 : xpos + 1;
