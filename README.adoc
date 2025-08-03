@@ -8,6 +8,10 @@ Make it harder to increase your score, but be careful, you're up against stockfi
 
 Press ESCAPE to quit or start a new game.
 
+Windows is a bad operating system by a bad corporation.
+So unfortunately no .exe for you.
+Sorry. I did try, but couldn't get it.
+
 I didn't manage to get to most of the buffs :'(.
 
 Source Code:
