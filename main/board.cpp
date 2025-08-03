@@ -33,6 +33,7 @@ Board::Board(color player_color, int stockfish_elo, int stockfish_depth)
     pieces[2][0] = new Bishop(2, 0, player_color, this);
     pieces[3][0] = new Queen(3, 0, player_color, this);
     pieces[4][0] = new King(4, 0, player_color, this);
+    player_king = pieces[4][0];
     pieces[5][0] = new Bishop(5, 0, player_color, this);
     pieces[6][0] = new Knight(6, 0, player_color, this);
     pieces[7][0] = new Rook(7, 0, player_color, this);
@@ -116,6 +117,9 @@ void Board::draw()
 {
     draw_checkerboard();
     draw_pieces();
+    if (!run_game)
+        return;
+
     if (!player_turn && get_stockfish)
     {
         move_stockfish();
@@ -165,6 +169,20 @@ std::string Board::get_best_move()
 
 bool Board::take_king()
 {
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            Piece *check = get_piece(i, j);
+            if (check != nullptr && check->my_color == ai_color)
+            {
+                if (check->move(player_king->xpos, player_king->ypos))
+                {
+                    return true;
+                }
+            }
+        }
+    }
     return false;
 }
 
@@ -191,7 +209,7 @@ void Board::move_stockfish()
     if (!move->move(xto, yto))
     {
         // It tried castle or el passant try ponder and hope
-        int ponder = best_move.find("ponder");
+        long unsigned int ponder = best_move.find("ponder");
         if (ponder == std::string::npos)
         {
             printf("I was hoping for a ponder but there isn't. Take an extra turn!\n");
@@ -283,5 +301,30 @@ void Board::remove_piece(int xpos, int ypos)
         pieces[xpos][ypos]->die();    // Call the die method of the piece
         delete pieces[xpos][ypos];    // Free the memory of the piece
         pieces[xpos][ypos] = nullptr; // Set the pointer to nullptr
+    }
+}
+
+void Board::game_over(color loser)
+{
+    run_game = false;
+    if (loser == player_color)
+    {
+        printf("Wow you suck!\n");
+    }
+    else
+    {
+        printf("Yippeeee good job!!!!!!!!!!!!!!\n");
+        score *= stockfish->elo;
+    }
+    std::ofstream scores;
+    scores.open("scores.txt", std::ios::app);
+    if (scores.is_open())
+    {
+        scores << std::to_string(score) << std::endl;
+        scores.close();
+    }
+    else
+    {
+        printf("OH NO! I couldn't record your score into scores.txt. It was '%f'\n", score);
     }
 }

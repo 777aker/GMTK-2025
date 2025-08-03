@@ -15,6 +15,7 @@ King::King(int xpos, int ypos, color my_color, Board *board)
 
 King::~King()
 {
+    board->game_over(my_color);
 }
 
 void King::draw(double tile_pos_x, double tile_pos_y, double tile_size)

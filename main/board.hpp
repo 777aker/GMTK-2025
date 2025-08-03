@@ -3,6 +3,8 @@
 
 #include "../window/window.hpp"
 #include "stockfish.hpp"
+#include <fstream>
+#include <iostream>
 
 class Piece;
 
@@ -20,7 +22,10 @@ public:
     color player_color;
     color ai_color;
     std::string enpassant = "-";
-    std::string can_castle = "KQkq";
+    std::string can_castle = "-"; // "KQkq";
+    void game_over(color loser);
+    bool run_game = true;
+    double score = 500;
 
 private:
     bool get_stockfish = false;
@@ -28,6 +33,7 @@ private:
     void draw_checkerboard();
     std::string get_best_move();
     void draw_pieces();
+    Piece *player_king;
     bool take_king();
     void move_stockfish();
     float tile_size;                 // Width of each tile

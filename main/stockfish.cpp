@@ -6,6 +6,7 @@
 Stockfish::Stockfish(int elo, int depth)
 {
     printf("Initing stockfish\n");
+    this->elo = elo;
 #ifdef _WIN32
     std::filesystem::path stockfish_relative = "stockfish/stockfish-windows-x86-64-avx2.exe";
 #elif defined(__linux__)

@@ -17,11 +17,11 @@ public:
     bool move(int xpos, int ypos);
     color my_color;
     char name;
+    int xpos = 0;
+    int ypos = 0;
 
 protected:
     bool selected = false;
-    int xpos = 0;
-    int ypos = 0;
     color highlight_color;
     Board *board = nullptr;
     bool valid_space(int xpos, int ypos);

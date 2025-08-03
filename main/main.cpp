@@ -1,7 +1,19 @@
 #include "../window/window.hpp"
 #include "../main/board.hpp"
+#include "../ui/button.hpp"
+#include "../ui/number_field.hpp"
 
-Board *gameboard; // Global game board object
+#include <iostream>
+#include <fstream>
+
+bool main_menu = true;
+Board *gameboard = nullptr; // Global game board object
+#define MAIN_BUTTONS 2
+Button *main_menu_buttons[MAIN_BUTTONS];
+#define BUFFS 0
+Button *main_menu_buffs[BUFFS];
+#define MAIN_FIELDS 2
+NumberField *main_menu_fields[MAIN_FIELDS];
 
 /**
  * @brief respond to key pressed
@@ -20,7 +32,18 @@ void key(GLFWwindow *windowobj, int key, int scancode, int action, int mods)
 	switch (key)
 	{
 	case GLFW_KEY_ESCAPE:
-		glfwSetWindowShouldClose(windowobj, 1);
+		if (main_menu)
+		{
+			glfwSetWindowShouldClose(windowobj, 1);
+		}
+		else
+		{
+			if (gameboard != nullptr && gameboard->run_game)
+			{
+				gameboard->game_over(green_sea);
+			}
+			main_menu = true;
+		}
 		break;
 	}
 }
@@ -43,12 +66,19 @@ void mouse(GLFWwindow *window, int button, int action, int mods)
 		glfwGetWindowSize(window, &xpix, &ypix);
 		xpos = xpos / xpix * 2 * dim * asp - dim * asp; // Convert to world coordinates
 		ypos = ypos / ypix * 2 * dim - dim;				// Convert to world coordinates
-		gameboard->mouse_left_clicked(xpos, ypos);
+
+		if (gameboard != nullptr)
+			gameboard->mouse_left_clicked(xpos, ypos);
 	}
 	else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
 	{
-		gameboard->mouse_right_clicked();
+		if (gameboard != nullptr)
+			gameboard->mouse_right_clicked();
 	}
+}
+
+void draw_main_menu(double high_score)
+{
 }
 
 /**
@@ -59,7 +89,17 @@ void mouse(GLFWwindow *window, int button, int action, int mods)
 void display_loop(Window *windowobj)
 {
 	// double last_time = glfwGetTime();
-	gameboard = new Board(green_sea, 1320, 10);
+
+	std::ifstream scores("scores.txt");
+	std::string line;
+	double high_score = -100000000;
+	while (std::getline(scores, line))
+	{
+		double rscore = std::stod(line);
+		if (rscore > high_score)
+			high_score = rscore;
+	}
+	scores.close();
 
 	while (!glfwWindowShouldClose(windowobj->glwindow))
 	{
@@ -67,7 +107,12 @@ void display_loop(Window *windowobj)
 		// double now = glfwGetTime();
 		// double deltaTime = now - last_time;
 
-		if (gameboard != nullptr)
+		if (main_menu)
+		{
+			draw_main_menu(high_score);
+		}
+
+		if (!main_menu && gameboard != nullptr)
 			gameboard->draw();
 
 		// want to see fps

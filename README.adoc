@@ -2,7 +2,12 @@ This is the repo for a game for the 2025 GMTK game jam.
 
 The theme is "LOOP".
 
-I've been obsessed with Chess lately so gonna make some kind of chess game.
+It's chess, but there's a LOOP of buffs and debuffs that change your score.
+Before you begin, pick the buffs and debuffs that'll be looped through.
+Make it harder to increase your score, but be careful, you're up against stockfish!
+
+Source Code:
+https://github.com/777aker/GMTK-2025
 
 I'm using stockfish 17.1 for generating AI moves. 
 As part of the GPL v3 licensing I'm including the links below for more stockfish info.

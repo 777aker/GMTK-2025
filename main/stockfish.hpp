@@ -17,6 +17,7 @@ public:
     ~Stockfish();
     void blast_cache();
     std::string get_best_move(std::string fen_str);
+    int elo;
 
 private:
     int stock_depth;
