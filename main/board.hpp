@@ -26,6 +26,7 @@ public:
     void game_over(color loser);
     bool run_game = true;
     double score = 500;
+    double modifier = 0;
     int loop_num;
     bool ready_for_delete = false;
 

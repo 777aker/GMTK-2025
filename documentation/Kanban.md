@@ -12,6 +12,12 @@ kanban-plugin: board
 - [ ] That weird pawn capture when double move nonsense
 - [ ] castling
 - [ ] promote piece to what you want
+- [ ] loop
+	- [ ] buff vector
+	- [ ] apply next x buffs
+	- [ ] display active buffs
+	- [ ] display next 10 buffs
+	- [ ] change modifier based on buff goodness
 
 
 ## In Progress
@@ -23,7 +29,7 @@ kanban-plugin: board
 	- [ ] Remove loop buffs
 	- [x] Game over restart ✅ 2025-08-02
 	- [x] display high score ✅ 2025-08-03
-	- [ ] display score during game
+	- [x] display score during game ✅ 2025-08-03
 	- [x] score file ✅ 2025-08-02
 - [ ] promote piece
 

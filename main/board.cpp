@@ -118,6 +118,9 @@ void Board::draw()
 {
     draw_checkerboard();
     draw_pieces();
+    glColor3ub(nephritis.r, nephritis.g, nephritis.b);
+    glRasterPos2i(-dim * asp + 5, dim - 20);
+    Print("Current Game Score = %lf, each turn score += %lf", score, modifier);
     if (!run_game)
         return;
 
