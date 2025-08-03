@@ -116,6 +116,14 @@ void Board::draw()
 {
     draw_checkerboard();
     draw_pieces();
+    if (!player_turn && get_stockfish)
+    {
+        move_stockfish();
+    }
+    else if (!get_stockfish)
+    {
+        get_stockfish = true;
+    }
 }
 
 std::string Board::get_best_move()
@@ -155,9 +163,25 @@ std::string Board::get_best_move()
     return stockfish->get_best_move(fen_str);
 }
 
+bool Board::take_king()
+{
+}
+
 void Board::move_stockfish()
 {
+    if (take_king())
+    {
+        return;
+    }
     std::string best_move = get_best_move();
+
+    int xfrom = best_move[0] - 'a';
+    int yfrom = best_move[1] - '1';
+    int xto = best_move[2] - 'a';
+    int yto = best_move[3] - '1';
+
+    Piece *move = get_piece(xfrom, yfrom);
+    move->move(xto, yto);
 
     player_turn = true;
 }
@@ -185,12 +209,16 @@ void Board::mouse_left_clicked(double xpos, double ypos)
             if (selected_piece->move(x_tile, y_tile))
             {
                 player_turn = false;
-                move_stockfish();
+                get_stockfish = false;
             }
+        }
+        else
+        {
+            selected_piece->deselect();
         }
         selected_piece = nullptr;
     }
-    else
+    else if (player_turn)
     {
         selected_piece = get_piece(x_tile, y_tile);
         if (selected_piece == nullptr)

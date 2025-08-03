@@ -3,7 +3,14 @@
 Pawn::Pawn(int xpos, int ypos, color my_color, Board *board)
     : Piece(xpos, ypos, my_color, board)
 {
-    name = 'P';
+    if (my_color == board->player_color)
+    {
+        name = 'P';
+    }
+    else
+    {
+        name = 'p';
+    }
 }
 
 Pawn::~Pawn()

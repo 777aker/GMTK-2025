@@ -27,7 +27,7 @@ kanban-plugin: board
 
 - [ ] Chess AI
 	- [ ] some library where you feed board it gives you best move. convert that to our format
-	- [ ] after player moves ai make move
+	- [x] after player moves ai make move ✅ 2025-08-02
 	- [x] player can't make move until ai does ✅ 2025-08-02
 
 

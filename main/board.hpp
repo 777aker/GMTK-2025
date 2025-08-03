@@ -23,10 +23,12 @@ public:
     std::string can_castle = "KQkq";
 
 private:
+    bool get_stockfish = false;
     bool player_turn = true;
     void draw_checkerboard();
     std::string get_best_move();
     void draw_pieces();
+    bool take_king();
     void move_stockfish();
     float tile_size;                 // Width of each tile
     float top_left_x;                // Top left corner x-coordinate
