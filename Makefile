@@ -19,7 +19,7 @@ endif
 
 SUBDIRS := $(wildcard */.)
 
-all: $(SUBDIRS) choop.exe
+all: $(SUBDIRS) choop
 clean: $(SUBDIRS)
 	$(CLEAN)
 
@@ -34,5 +34,5 @@ $(SUBDIRS):
 SRC = $(wildcard */*.cpp)
 OBJ = $(SRC:.cpp=.o)
 
-choop.exe: $(OBJ)
+choop: $(OBJ)
 	g++ $(CFLG) -o $@ $^ $(LIBS)
