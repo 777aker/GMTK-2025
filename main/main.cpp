@@ -66,7 +66,7 @@ void key(GLFWwindow *windowobj, int key, int scancode, int action, int mods)
  */
 void mouse(GLFWwindow *window, int button, int action, int mods)
 {
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && action != GLFW_REPEAT)
 	{
 		double xpos, ypos;
 		glfwGetCursorPos(window, &xpos, &ypos);
@@ -129,6 +129,8 @@ void draw_main_menu(double high_score)
 void start_game()
 {
 	printf("Starting game: elo %d, depth %d, loop %d\n", bot_elo, depth, loop_amount);
+	gameboard = new Board(green_sea, bot_elo, depth, loop_amount);
+	main_menu = false;
 }
 
 void remove_buffs()
@@ -184,13 +186,33 @@ void display_loop(Window *windowobj)
 			draw_main_menu(high_score);
 		}
 
-		if (!main_menu && gameboard != nullptr)
+		if (!main_menu && gameboard != nullptr && !gameboard->ready_for_delete)
+		{
 			gameboard->draw();
+			if (gameboard->score > high_score)
+			{
+				high_score = gameboard->score;
+			}
+		}
+
+		if (gameboard != nullptr && gameboard->ready_for_delete)
+		{
+			if (gameboard->score > high_score)
+			{
+				high_score = gameboard->score;
+			}
+			delete gameboard;
+			gameboard = nullptr;
+		}
 
 		// want to see fps
 		glColor3ub(nephritis.r, nephritis.g, nephritis.b);
 		glRasterPos2i(-dim * asp + 5, dim - 5);
 		Print("FPS=%d, ELO=%d, DEPTH=%d, LOOP=%d", windowobj->FramesPerSecond(), bot_elo, depth, loop_amount);
+		glRasterPos2i(-dim * asp + 5, dim - 10);
+		Print("Your highest score = %lf", high_score);
+		glRasterPos2i(-dim * asp + 5, dim - 15);
+		Print("Press ESCAPE to quit or start a new game");
 
 		// check for display errors
 		int err = glGetError();

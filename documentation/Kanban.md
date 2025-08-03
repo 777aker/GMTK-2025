@@ -17,12 +17,12 @@ kanban-plugin: board
 ## In Progress
 
 - [ ] Menu
-	- [ ] AI difficulty
-	- [ ] Start Game
+	- [x] AI difficulty ✅ 2025-08-03
+	- [x] Start Game ✅ 2025-08-03
 	- [ ] Pick loop buffs
 	- [ ] Remove loop buffs
 	- [x] Game over restart ✅ 2025-08-02
-	- [ ] display high score
+	- [x] display high score ✅ 2025-08-03
 	- [ ] display score during game
 	- [x] score file ✅ 2025-08-02
 - [ ] promote piece

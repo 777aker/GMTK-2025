@@ -27,6 +27,7 @@ public:
     bool run_game = true;
     double score = 500;
     int loop_num;
+    bool ready_for_delete = false;
 
 private:
     bool get_stockfish = false;

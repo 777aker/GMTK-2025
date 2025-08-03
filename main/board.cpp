@@ -307,6 +307,10 @@ void Board::remove_piece(int xpos, int ypos)
 
 void Board::game_over(color loser)
 {
+    if (ready_for_delete)
+    {
+        return;
+    }
     run_game = false;
     if (loser == player_color)
     {
@@ -328,4 +332,5 @@ void Board::game_over(color loser)
     {
         printf("OH NO! I couldn't record your score into scores.txt. It was '%f'\n", score);
     }
+    ready_for_delete = true;
 }

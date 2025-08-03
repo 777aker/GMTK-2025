@@ -6,6 +6,8 @@ It's chess, but there's a LOOP of buffs and debuffs that change your score.
 Before you begin, pick the buffs and debuffs that'll be looped through.
 Make it harder to increase your score, but be careful, you're up against stockfish!
 
+Press ESCAPE to quit or start a new game.
+
 Source Code:
 https://github.com/777aker/GMTK-2025
 
