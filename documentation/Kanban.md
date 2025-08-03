@@ -32,6 +32,12 @@ kanban-plugin: board
 	- [ ] display active buffs
 	- [ ] display next 10 buffs
 	- [ ] change modifier based on buff goodness
+- [ ] fix piece sizes
+- [ ] fix p1 texture
+- [ ] animate pieces
+	- [ ] random start
+	- [ ] random loop time
+	- [ ] loop
 
 
 ## Done
