@@ -24,7 +24,7 @@ loadtexbmp.o: loadtexbmp.cpp
 shader.o: shader.cpp
 
 .cpp.o:
-	x86_64-w64-mingw32-g++ -c $(CFLG) -I /usr/include/opencv4 $<
+	g++ -c $(CFLG) -I /usr/include/opencv4 $<
 
 # Clean
 clean:

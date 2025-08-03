@@ -23,7 +23,7 @@ number_field.o: number_field.cpp
 button.o: button.cpp
 
 .cpp.o:
-	x86_64-w64-mingw32-g++ -c $(CFLG) -I /usr/include/opencv4 $<
+	g++ -c $(CFLG) -I /usr/include/opencv4 $<
 
 # Clean
 clean:

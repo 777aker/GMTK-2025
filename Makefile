@@ -27,12 +27,12 @@ $(SUBDIRS):
 	$(MAKE) -C $@ $(MAKECMDGOALS)
 
 .cpp.o:
-	x86_64-w64-mingw32-g++ -c $(CFLG) -I /usr/include/opencv4 $<
+	g++ -c $(CFLG) -I /usr/include/opencv4 $<
 
 .PHONY: $(SUBDIRS)
 
 SRC = $(wildcard */*.cpp)
 OBJ = $(SRC:.cpp=.o)
 
-choop: $(OBJ)
-	x86_64-w64-mingw32-g++ $(CFLG) -o $@ $^ $(LIBS)
+choop.exe: $(OBJ)
+	g++ $(CFLG) -o $@ $^ $(LIBS)
