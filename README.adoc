@@ -8,6 +8,8 @@ Make it harder to increase your score, but be careful, you're up against stockfi
 
 Press ESCAPE to quit or start a new game.
 
+I didn't manage to get to most of the buffs :'(.
+
 Source Code:
 https://github.com/777aker/GMTK-2025
 

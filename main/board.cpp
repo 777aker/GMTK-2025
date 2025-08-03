@@ -173,6 +173,38 @@ void Board::apply_loop()
         }
     }
     score += modifier;
+    if (spawn_b)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                if (get_piece(i, j) == nullptr)
+                {
+                    if (rand() % spawn_b == 0)
+                    {
+                        pieces[i][j] = new Bishop(i, j, ai_color, this);
+                    }
+                }
+            }
+        }
+    }
+    if (spawn_B)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                if (get_piece(i, j) == nullptr)
+                {
+                    if (rand() % spawn_B == 0)
+                    {
+                        pieces[i][j] = new Bishop(i, j, player_color, this);
+                    }
+                }
+            }
+        }
+    }
 }
 
 void Board::draw(double deltaTime)
@@ -362,7 +394,28 @@ void Board::remove_piece(int xpos, int ypos)
 {
     if (pieces[xpos][ypos] != nullptr)
     {
-        pieces[xpos][ypos]->die();    // Call the die method of the piece
+        Piece *killing = pieces[xpos][ypos];
+        if (pexp && killing->name == 'p' || Pexp && killing->name == 'P')
+        {
+            int left_x = xpos - 1 < 0 ? 0 : xpos - 1;
+            int right_x = xpos + 1 > 7 ? 7 : xpos + 1;
+            int bot_y = ypos - 1 < 0 ? 0 : ypos - 1;
+            int top_y = ypos + 1 > 7 ? 7 : ypos + 1;
+            for (int x = left_x; x <= right_x; x++)
+            {
+                for (int y = bot_y; y <= top_y; y++)
+                {
+                    if (get_piece(x, y) != nullptr)
+                    {
+                        get_piece(x, y)->die();
+                        delete pieces[x][y];
+                        pieces[x][y] = nullptr;
+                    }
+                }
+            }
+        }
+
+        killing->die();               // Call the die method of the piece
         delete pieces[xpos][ypos];    // Free the memory of the piece
         pieces[xpos][ypos] = nullptr; // Set the pointer to nullptr
     }

@@ -117,10 +117,14 @@ void Piece::draw(double tile_pos_x, double tile_pos_y, double tile_size, int fil
     int id = -1;
     accumulated_time += deltaTime;
 
-    if (accumulated_time > tex_time)
+        if (accumulated_time > tex_time)
     {
         accumulated_time = 0;
         current_tex = (current_tex + 1) % 3;
+    }
+    if (invisible && !(my_color == board->player_color))
+    {
+        return;
     }
 
     glEnable(GL_TEXTURE_2D);
