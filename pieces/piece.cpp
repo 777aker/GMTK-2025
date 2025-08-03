@@ -95,3 +95,48 @@ bool Piece::piece_between(int xpos, int ypos)
 
     return false;
 }
+
+void Piece::get_textures()
+{
+    std::string assets = "assets/";
+    std::string tex_loc = assets + name + "1" + ".bmp";
+    textures[0] = LoadTexBMP(tex_loc.c_str());
+    tex_loc = assets + name + "2" + ".bmp";
+    textures[1] = LoadTexBMP(tex_loc.c_str());
+    tex_loc = assets + name + "3" + ".bmp";
+    textures[2] = LoadTexBMP(tex_loc.c_str());
+}
+
+void Piece::draw(double tile_pos_x, double tile_pos_y, double tile_size)
+{
+    if (textures[0] < 0 || textures[1] < 0 || textures[2] < 0)
+    {
+        glDisable(GL_TEXTURE_2D);
+        if (!selected)
+        {
+            glColor3ub(my_color.r, my_color.g, my_color.b);
+        }
+        else
+        {
+            glColor3ub(highlight_color.r, highlight_color.g, highlight_color.b);
+        }
+    }
+    else
+    {
+        glEnable(GL_TEXTURE_2D);
+        glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+        glBindTexture(GL_TEXTURE_2D, textures[0]);
+    }
+
+    glBegin(GL_QUADS);
+    glTexCoord2f(1.0, 0.0);
+    glVertex2f(tile_pos_x, tile_pos_y); // Top right corner
+    glTexCoord2f(1.0, 1.0);
+    glVertex2f(tile_pos_x, tile_pos_y + tile_size); // Top left corner
+    glTexCoord2f(0.0, 1.0);
+    glVertex2f(tile_pos_x + tile_size, tile_pos_y + tile_size); // Bottom left corner
+    glTexCoord2f(0.0, 0.0);
+    glVertex2f(tile_pos_x + tile_size, tile_pos_y); // Bottom right corner
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
+}

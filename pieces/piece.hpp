@@ -12,7 +12,7 @@ public:
     virtual ~Piece() = 0;
     void select(color player_color);
     void deselect();
-    virtual void draw(double tile_pos_x, double tile_pos_y, double tile_size) = 0;
+    void draw(double tile_pos_x, double tile_pos_y, double tile_size);
     void die();
     bool move(int xpos, int ypos);
     color my_color;
@@ -28,6 +28,8 @@ protected:
     bool same_team(int xpos, int ypos);
     virtual bool move_math(int xpos, int ypos) = 0;
     bool piece_between(int xpos, int ypos);
+    unsigned int textures[3] = {};
+    void get_textures();
 };
 
 #endif

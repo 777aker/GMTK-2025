@@ -10,7 +10,6 @@ class Bishop : public Piece
 public:
     Bishop(int xpos, int ypos, color my_color, Board *board);
     ~Bishop();
-    void draw(double tile_pos_x, double tile_pos_y, double tile_size);
 
 protected:
     bool move_math(int xpos, int ypos);

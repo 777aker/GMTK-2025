@@ -8,13 +8,20 @@ double dim = 100; // size of the world
 double asp = 1;	  // aspect ratio
 
 // Fatal error occured
-static void Fatal(const char *format, ...)
+void Fatal(const char *format, ...)
 {
 	va_list args;
 	va_start(args, format);
 	vfprintf(stderr, format, args);
 	va_end(args);
 	exit(1);
+}
+
+void ErrCheck(const char *where)
+{
+	int err = glGetError();
+	if (err)
+		fprintf(stderr, "ERROR: %s [%s]\n", gluErrorString(err), where);
 }
 
 // different type of error occured

@@ -53,6 +53,10 @@ const struct color asbestos = {127, 140, 141};	 // rgb(127, 140, 141)
 const struct color black = {0, 0, 0};			 // rgb(0, 0, 0)
 
 void Print(const char *format, ...);
+void Fatal(const char *format, ...);
+void ErrCheck(const char *where);
+
+unsigned int LoadTexBMP(const char *file);
 
 class Window
 {

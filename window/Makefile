@@ -17,9 +17,10 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
-all: window.o
+all: window.o loadtexbmp.o
 
 window.o: window.cpp window.hpp
+loadtexbmp.o: loadtexbmp.cpp
 
 .cpp.o:
 	g++ -c $(CFLG) -I /usr/include/opencv4 $<
