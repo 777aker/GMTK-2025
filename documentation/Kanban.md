@@ -21,7 +21,7 @@ kanban-plugin: board
 	- [ ] Start Game
 	- [ ] Pick loop buffs
 	- [ ] Remove loop buffs
-	- [ ] Game over restart
+	- [x] Game over restart ✅ 2025-08-02
 	- [ ] display high score
 	- [ ] display score during game
 	- [x] score file ✅ 2025-08-02

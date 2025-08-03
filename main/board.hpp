@@ -11,7 +11,7 @@ class Piece;
 class Board
 {
 public:
-    Board(color player_color, int stockfish_elo, int stockfish_depth);
+    Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount);
     ~Board();
     void draw();
     void mouse_left_clicked(double xpos, double ypos);
@@ -26,6 +26,7 @@ public:
     void game_over(color loser);
     bool run_game = true;
     double score = 500;
+    int loop_num;
 
 private:
     bool get_stockfish = false;

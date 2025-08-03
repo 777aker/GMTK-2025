@@ -50,6 +50,7 @@ const struct color pomegranate = {192, 57, 43};	 // rgb(192, 57, 43)
 const struct color clouds = {236, 240, 241};	 // rgb(236, 240, 241)
 const struct color concrete = {127, 140, 141};	 // rgb(127, 140, 141)
 const struct color asbestos = {127, 140, 141};	 // rgb(127, 140, 141)
+const struct color black = {0, 0, 0};			 // rgb(0, 0, 0)
 
 void Print(const char *format, ...);
 

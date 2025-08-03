@@ -9,6 +9,12 @@ Make it harder to increase your score, but be careful, you're up against stockfi
 Source Code:
 https://github.com/777aker/GMTK-2025
 
+Made with the graphics library OpenGL.
+https://en.wikipedia.org/wiki/OpenGL
+
+Assets made with aseprite.
+https://www.aseprite.org/
+
 I'm using stockfish 17.1 for generating AI moves. 
 As part of the GPL v3 licensing I'm including the links below for more stockfish info.
 https://stockfishchess.org/

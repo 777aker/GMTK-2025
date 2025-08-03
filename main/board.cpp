@@ -11,9 +11,10 @@
 
 using namespace boost::process;
 
-Board::Board(color player_color, int stockfish_elo, int stockfish_depth)
+Board::Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount)
 {
     this->player_color = player_color;
+    this->loop_num = loop_amount;
     if (player_color == green_sea)
     {
         this->ai_color = pumpkin; // Example AI color for green pieces
