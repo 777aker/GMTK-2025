@@ -12,7 +12,7 @@ public:
     virtual ~Piece() = 0;
     void select(color player_color);
     void deselect();
-    void draw(double tile_pos_x, double tile_pos_y, double tile_size);
+    void draw(double tile_pos_x, double tile_pos_y, double tile_size, int filter_shader);
     void die();
     bool move(int xpos, int ypos);
     color my_color;

@@ -11,7 +11,7 @@ class Piece;
 class Board
 {
 public:
-    Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount);
+    Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount, int filter_shader);
     ~Board();
     void draw();
     void mouse_left_clicked(double xpos, double ypos);
@@ -29,6 +29,7 @@ public:
     double modifier = 0;
     int loop_num;
     bool ready_for_delete = false;
+    int filter_shader;
 
 private:
     bool get_stockfish = false;

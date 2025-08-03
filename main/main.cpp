@@ -19,6 +19,7 @@ NumberField *selected_field = nullptr;
 int bot_elo = 1320;
 int depth = 10;
 int loop_amount = 1;
+int filter_shader;
 
 /**
  * @brief respond to key pressed
@@ -129,7 +130,7 @@ void draw_main_menu(double high_score)
 void start_game()
 {
 	printf("Starting game: elo %d, depth %d, loop %d\n", bot_elo, depth, loop_amount);
-	gameboard = new Board(green_sea, bot_elo, depth, loop_amount);
+	gameboard = new Board(green_sea, bot_elo, depth, loop_amount, filter_shader);
 	main_menu = false;
 }
 
@@ -180,6 +181,9 @@ void display_loop(Window *windowobj)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// double now = glfwGetTime();
 		// double deltaTime = now - last_time;
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBlendEquation(GL_FUNC_ADD);
 
 		if (main_menu)
 		{
@@ -240,6 +244,8 @@ int main(int argc, char *argv[])
 	Window mainwindow("CHOOP", 0, 800, 500, key, mouse);
 	glDisable(GL_DEPTH_TEST);
 	glClearColor((float)midnight_blue.r / 255.0, (float)midnight_blue.g / 255.0, (float)midnight_blue.b / 255.0, 1.0);
+
+	filter_shader = CreateShaderProg("main/filter.vert", "main/filter.frag");
 
 	display_loop(&mainwindow);
 }

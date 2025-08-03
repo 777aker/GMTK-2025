@@ -57,6 +57,7 @@ void Fatal(const char *format, ...);
 void ErrCheck(const char *where);
 
 unsigned int LoadTexBMP(const char *file);
+int CreateShaderProg(const char *vert, const char *frag);
 
 class Window
 {

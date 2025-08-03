@@ -17,10 +17,11 @@ endif
 CLEAN=rm -f $(EXE) *.o *.a
 endif
 
-all: window.o loadtexbmp.o
+all: window.o loadtexbmp.o shader.o
 
 window.o: window.cpp window.hpp
 loadtexbmp.o: loadtexbmp.cpp
+shader.o: shader.cpp
 
 .cpp.o:
 	g++ -c $(CFLG) -I /usr/include/opencv4 $<

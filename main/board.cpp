@@ -11,10 +11,11 @@
 
 using namespace boost::process;
 
-Board::Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount)
+Board::Board(color player_color, int stockfish_elo, int stockfish_depth, int loop_amount, int filter_shader)
 {
     this->player_color = player_color;
     this->loop_num = loop_amount;
+    this->filter_shader = filter_shader;
     if (player_color == green_sea)
     {
         this->ai_color = pumpkin; // Example AI color for green pieces
@@ -102,16 +103,25 @@ void Board::draw_pieces()
 {
     // Placeholder for drawing pieces
     // This function should iterate through the pieces array and call their draw methods
+    if (filter_shader > 0)
+    {
+        glUseProgram(filter_shader);
+        int id = glGetUniformLocation(filter_shader, "dim");
+        glUniform1d(id, dim);
+        id = glGetUniformLocation(filter_shader, "asp");
+        glUniform1d(id, asp);
+    }
     for (int i = 0; i < 8; i++)
     {
         for (int j = 0; j < 8; j++)
         {
             if (pieces[i][j] != nullptr)
             {
-                pieces[i][j]->draw(top_left_x + i * tile_size, top_left_y + j * tile_size, tile_size);
+                pieces[i][j]->draw(top_left_x + i * tile_size, top_left_y + j * tile_size, tile_size, filter_shader);
             }
         }
     }
+    glUseProgram(0);
 }
 
 void Board::draw()
