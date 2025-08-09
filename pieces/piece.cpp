@@ -104,11 +104,14 @@ bool Piece::piece_between(int xpos, int ypos)
 void Piece::get_textures()
 {
     std::string assets = "assets/";
-    std::string tex_loc = assets + name + "1" + ".bmp";
+    std::string ai = "";
+    if (this->board->ai_color == my_color)
+        ai = "_ai";
+    std::string tex_loc = assets + name + "1" + ai + ".bmp";
     textures[0] = LoadTexBMP(tex_loc.c_str());
-    tex_loc = assets + name + "2" + ".bmp";
+    tex_loc = assets + name + "2" + ai + ".bmp";
     textures[1] = LoadTexBMP(tex_loc.c_str());
-    tex_loc = assets + name + "3" + ".bmp";
+    tex_loc = assets + name + "3" + ai + ".bmp";
     textures[2] = LoadTexBMP(tex_loc.c_str());
 }
 
@@ -117,7 +120,7 @@ void Piece::draw(double tile_pos_x, double tile_pos_y, double tile_size, int fil
     int id = -1;
     accumulated_time += deltaTime;
 
-        if (accumulated_time > tex_time)
+    if (accumulated_time > tex_time)
     {
         accumulated_time = 0;
         current_tex = (current_tex + 1) % 3;
