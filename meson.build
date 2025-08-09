@@ -1,5 +1,6 @@
 project('choop', 'cpp', version : '0.1.0', default_options : ['cpp_std=c++20'])
 
+boost_dep = dependency('boost')
 glut_dep = dependency('glut')
 glfw_dep = dependency('glfw3')
 
@@ -23,5 +24,5 @@ choop_sources = [
 
 executable('choop',
     sources : choop_sources,
-    dependencies: [],
+    dependencies: [boost_dep, glut_dep, glfw_dep],
     link_args : ['-lglfw', '-lGLU', '-lGL', '-lm'])

@@ -1,7 +1,7 @@
 #  Msys/MinGW
 ifeq "$(OS)" "Windows_NT"
 CFLG=-O3 -Wall -g -DUSEGLEW -I/mingw64/include/opencv4 -std=c++20
-LIBS=-lmingw32 -mwindows -lglfw3 -lglew32 -lglu32 -lopengl32 -lm
+LIBS=-lmingw32 -mwindows -lglfw3 -lglew32 -lglu32 -lopengl32 -lm -lboost_system-mt -lboost_process-mt
 CLEAN=rm -f *.exe *.o *.a
 else
 #  OSX
