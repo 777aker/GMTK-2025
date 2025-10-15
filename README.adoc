@@ -1,5 +1,14 @@
 This is the repo for a game for the 2025 GMTK game jam.
 
+Building
+
+[bash]
+----
+meson setup builddir
+meson compile -C builddir
+./builddir/choop
+----
+
 The theme is "LOOP".
 
 It's chess, but there's a LOOP of buffs and debuffs that change your score.
